@@ -21,12 +21,12 @@ export const getUsers = (req, res) => {
         if(!results) {
 
             res.status(HttpStatus.OK.code)
-                .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, 'No User Found');
+                .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `No User Found`))
        
         } else {     
 
              res.status(HttpStatus.OK.code)                                                                        
-                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, 'All User Found',{ User: results});    
+                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `All User Found`,{ User: results}))
         
         }
     
@@ -42,13 +42,11 @@ export const getUser = (req, res) => {
         if(!results[0]) {
 
             res.status(HttpStatus.NOT_FOUND.code)
-                .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `id : ${req.params.id}  was  not found ` );
-       
+                .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `id : ${req.params.id}  was  not found ` ))       
         } else {     
 
              res.status(HttpStatus.OK.code)                                                                        
-                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, 'User Found',{ User: results});    
-        
+                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `User Found`,{ User: results}))  
         }
     
     });
@@ -62,12 +60,12 @@ export const createUser = (req, res) => {
         if(!results) {
 
             res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
-                .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, 'ISError');
+                .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`)) 
        
         } else {     
 
              res.status(HttpStatus.CREATED.code)                                                                        
-                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, 'User Created',{ User: results});    
+                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `User Created`,{ User: results})) 
         
         }
     
