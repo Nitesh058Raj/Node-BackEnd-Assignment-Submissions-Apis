@@ -7,9 +7,9 @@ dotenv.config();
 const pool = mysql.createPool({
 
     host: process.env.DB_HOST,
-    post: process.env.DB_PORT,
+    port: process.env.DB_PORT,
     database: process.env.DB_NAME,
-    password: process.env.DB_PASS,
+    password: process.env.DB_PASSWORD,
     user: process.env.DB_USER,
     connectionLimit: process.env.DB_CONNECTION_LIMIT  //limit of que=[]
         

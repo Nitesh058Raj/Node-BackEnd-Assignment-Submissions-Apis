@@ -14,10 +14,13 @@ const HttpStatus = {
 };
 
 
+
 export const getUsers = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, fetching User`);
 
+
     database.query(QUERY.SELECT_USERS, (error, results) => {
+    
         if(!results) {
 
             res.status(HttpStatus.OK.code)
@@ -47,6 +50,7 @@ export const getUser = (req, res) => {
 
              res.status(HttpStatus.OK.code)                                                                        
                  .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `User Found`,{ User: results}))  
+ 
         }
     
     });
@@ -60,18 +64,22 @@ export const createUser = (req, res) => {
         if(!results) {
 
             res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
-                .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`)) 
+
+                .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`, {'O': Object.values(req.body),  'b': req.body , 'c': results , 'd' : error})) 
        
         } else {     
 
              res.status(HttpStatus.CREATED.code)                                                                        
                  .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `User Created`,{ User: results})) 
         
+    
         }
     
+
     });
 
 };
+
 
 
 export default HttpStatus;

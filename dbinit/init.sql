@@ -15,3 +15,5 @@ CREATE TABLE nn (
     PRIMARY KEY (id),
     CONSTRAINT UQ_nn_Email UNIQUE (email)
 );
+
+

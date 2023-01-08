@@ -13,10 +13,10 @@ services:
     expose:
       - 3306
     environment:
-      MYSQL_DATABASE: nn
+      MYSQL_DATABASE: ndb
       MYSQL_USER: admin
-      MYSQL_PASSWORD: a123 
-      MYSQL_ROOT_PASSWORD: a1234 
+      MYSQL_PASSWORD: abc 
+      MYSQL_ROOT_PASSWORD: abc
       SERVICE_TAGS: dev
       SERVICE_NAME: mysqldb
     networks:
