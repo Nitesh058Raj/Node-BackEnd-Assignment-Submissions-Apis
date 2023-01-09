@@ -17,8 +17,32 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: abc 
       MYSQL_ROOT_PASSWORD: abc
-      SERVICE_TAGS: dev
+      SERVICE_TAGS: prod
       SERVICE_NAME: mysqldb
+    networks:
+      - internalnet 
+
+  nodeapp:
+    container_name: nodeappcontainer
+    build: .
+    image: nodeapp:v1
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    environment:
+      DB_HOST: mysqldb
+      DB_PORT: 3306
+      DB_USER: admin
+      DB_PASSWORD: abc
+      DB_NAME: ndb
+      DB_CONNECTION_LIMIT: 10
+      SERVICE_TAGS: prod
+      SERVICE_NAME: nodeappservice
+      SERVER_PORT: 3000
+    depends_on:
+      - mysqldb
     networks:
       - internalnet 
 
