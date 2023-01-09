@@ -1,19 +1,17 @@
-CREATE DATABASE IF NOT EXISTS ndb;
+CREATE DATABASE IF NOT EXISTS assignmentdb;
 
-USE ndb;
+USE assignmentdb;
 DROP TABLE IF EXISTS new;
-CREATE TABLE nn (
+CREATE TABLE assignments (
     id BIGINT  UNSIGNED NOT NULL AUTO_INCREMENT,
-    e_num      VARCHAR(255) DEFAULT NULL,
-    first_name VARCHAR(255) DEFAULT NULL,
-    last_name  VARCHAR(255) DEFAULT NULL,
-    email      VARCHAR(255) DEFAULT NULL,
-    phone      VARCHAR(255) DEFAULT NULL,
+    faculty_name VARCHAR(255) DEFAULT NULL,
+    faculty_email   VARCHAR(255) DEFAULT NULL,
+    description VARCHAR(255) DEFAULT NULL,
     title      VARCHAR(255) DEFAULT NULL,
-    sub_name   VARCHAR(255) DEFAULT NULL,
+    subject_name    VARCHAR(255) DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    CONSTRAINT UQ_nn_Email UNIQUE (email)
+    CONSTRAINT UQ_nn_Title UNIQUE (title)
 );
 
 

@@ -13,7 +13,7 @@ services:
     expose:
       - 3306
     environment:
-      MYSQL_DATABASE: ndb
+      MYSQL_DATABASE: assignmentdb
       MYSQL_USER: admin
       MYSQL_PASSWORD: abc 
       MYSQL_ROOT_PASSWORD: abc
@@ -36,7 +36,7 @@ services:
       DB_PORT: 3306
       DB_USER: admin
       DB_PASSWORD: abc
-      DB_NAME: ndb
+      DB_NAME: assignmentdb
       DB_CONNECTION_LIMIT: 10
       SERVICE_TAGS: prod
       SERVICE_NAME: nodeappservice
