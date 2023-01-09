@@ -114,7 +114,7 @@ export const deleteAssignment = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, Checking for Assignment`);
 
     database.query(QUERY.SELECT_ASSIGNMENT, [req.params.id], (error, results) => {
-        if(!results) {
+        if(!results[0]) {
 
             res.status(HttpStatus.NOT_FOUND.code)
 
