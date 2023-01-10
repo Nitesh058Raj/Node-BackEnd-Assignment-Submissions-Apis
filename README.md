@@ -7,7 +7,7 @@ features :
   - docker-compose & Dockerfile to generate a docker image
   
 routes :
-  - /assignment                                      |  GET
+  - /assignment -> for return all data               |  GET
   - /assignment/:id -> for return a single data      |  GET
   - /assignment/:id -> for update a data             |  POST
   - /assignment/delete/:id -> for delete a record    |  GET
