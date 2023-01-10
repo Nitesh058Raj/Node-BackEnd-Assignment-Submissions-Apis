@@ -1,19 +1,24 @@
 import express from 'express';
 
-import {getAssignments, getAssignment, createAssignment, updateAssignment, deleteAssignment } from '../controller/assignments.controller.js';
+import {getAssignments, getAssignment, createAssignment, updateAssignment, deleteAssignment, addUser } from '../controller/assignments.controller.js';
+import { verifyToken } from '../token/token.config.js';
 
 const asRoute = express.Router();
 
+asRoute.route('/login')
+    .post(addUser)
+
 asRoute.route('/')
-    .get(getAssignments)
-    .post(createAssignment);
+    .get( verifyToken, getAssignments)
+    .post( verifyToken, createAssignment);
 
 asRoute.route('/:id')
-    .get(getAssignment)
-    .post(updateAssignment);
+    .get( verifyToken, getAssignment)
+    .post( verifyToken, updateAssignment);
 
 asRoute.route('/delete/:id')
-    .get(deleteAssignment)
+    .get( verifyToken, deleteAssignment)
+
 
 export default asRoute;
 

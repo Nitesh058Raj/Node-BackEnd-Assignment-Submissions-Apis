@@ -11,7 +11,14 @@ CREATE TABLE assignments (
     subject_name    VARCHAR(255) DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    CONSTRAINT UQ_nn_Title UNIQUE (title)
+    CONSTRAINT UQ_assignments_Title UNIQUE (title)
 );
 
-
+CREATE TABLE users (
+    id BIGINT  UNSIGNED NOT NULL AUTO_INCREMENT,
+    faculty_name VARCHAR(255) DEFAULT NULL,
+    faculty_email   VARCHAR(255) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT UQ_users_Email UNIQUE (faculty_email)
+);
