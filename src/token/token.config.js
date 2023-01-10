@@ -6,7 +6,7 @@ const SECRETE_KEY = "super_secrete_key";
 const HttpStatus = {
     OK: {code: 200, status: 'OK'},
     FORBIDDEN: {code: 403, status: 'FDN'}
-}
+};
 
 export function createToken(x) {
     
@@ -24,26 +24,22 @@ export const verifyToken = ( req, res, next) => {
         const bearer = bearerHeader.split(" ");
         const btoken = bearer[1];
         req.token = btoken;
+     
+        jwt.verify(req.token, "Nit_Secret_Key", (error, authenticationData) => {
+            if (error) {
+            
+               return res.status(HttpStatus.FORBIDDEN.code)
+                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
     
+            }
+        });
+
+
      } else {
 
-         res.status(HttpStatus.FORBIDDEN.code)
-
-            .send(new Response(HttpStatus.FORBIDDEN.code)) 
-      
-     }
-     
-     jwt.verify(req.token, "Nit_Secret_Key", (error, authenticationData) => {
-        if (error) {
-            
-            res.status(HttpStatus.FORBIDDEN.code)
-
-               .send(new Response(HttpStatus.FORBIDDEN.code)) 
-    
-        }
-     });
-
-
+       return  res.status(HttpStatus.FORBIDDEN.code)
+                .send(new Response(HttpStatus.FORBIDDEN.code) )
+     } 
      next();
 
 };
