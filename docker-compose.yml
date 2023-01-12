@@ -25,7 +25,7 @@ services:
   nodeapp:
     container_name: nodeappcontainer
     build: .
-    image: nodeapp:v1
+    image: nodeapp:v3
     restart: unless-stopped
     ports:
       - 3000:3000
@@ -41,6 +41,7 @@ services:
       SERVICE_TAGS: prod
       SERVICE_NAME: nodeappservice
       SERVER_PORT: 3000
+      SECRETE_KEY: "super_secrete_key"
     depends_on:
       - mysqldb
     networks:

@@ -1,2 +1,4 @@
-Node: 18.13.0
-Npm: 8.19.3
+Node: 18.13.0  // I am using
+Npm: 8.19.3    // I am using
+Node Image: node:alpine3.11
+Mysql Image: mysql:8.0

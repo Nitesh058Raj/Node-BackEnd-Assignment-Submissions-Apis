@@ -1,7 +1,10 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import Response from '../domain/response.js';
 
-const SECRETE_KEY = "super_secrete_key";
+dotenv.config();
 
+const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
 
 const HttpStatus = {
     OK: {code: 200, status: 'OK'},
@@ -25,7 +28,7 @@ export const verifyToken = ( req, res, next) => {
         const btoken = bearer[1];
         req.token = btoken;
      
-        jwt.verify(req.token, "Nit_Secret_Key", (error, authenticationData) => {
+        jwt.verify(req.token, SECRETE_KEY, (error, authenticationData) => {
             if (error) {
             
                return res.status(HttpStatus.FORBIDDEN.code)
