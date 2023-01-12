@@ -8,7 +8,7 @@ const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
 
 const HttpStatus = {
     OK: {code: 200, status: 'OK'},
-    FORBIDDEN: {code: 403, status: 'FDN'}
+    FORBIDDEN: {code: 403, status: 'FORBIDDEN'}
 };
 
 export function createToken(x) {

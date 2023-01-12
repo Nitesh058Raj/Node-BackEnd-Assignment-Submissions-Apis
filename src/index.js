@@ -15,7 +15,7 @@ const app = express();
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 
-app.use('/assignment', asRoute);
+app.use('/api', asRoute);
 
 app.get('/', (req, res) => {res.send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, 'API WORKING FINE ' ))});
 app.all('*', (req, res) => res.status(HttpStatus.NOT_FOUND.code)

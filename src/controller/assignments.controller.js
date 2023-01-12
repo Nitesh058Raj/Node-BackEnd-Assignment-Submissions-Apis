@@ -139,9 +139,9 @@ export const deleteAssignment = (req, res) => {
 };
 
 
-export const addUser = (req, res) => {
+export const CreateUser = (req, res) => {
 
-    logger.info(`${req.method} ${req.originalUrl}, Adding User...`);
+    logger.info(`${req.method} ${req.originalUrl}, Creating User...`);
     
     database.query(QUERY.ADD_USER, Object.values(req.body), (error, results) => { 
         
@@ -149,7 +149,7 @@ export const addUser = (req, res) => {
             
             res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
                 
-                .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`, {'Error' : error}))   
+                .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISE`, {'Error' : error}))   
         
         } else { 
             

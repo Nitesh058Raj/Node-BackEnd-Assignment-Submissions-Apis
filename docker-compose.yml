@@ -25,7 +25,7 @@ services:
   nodeapp:
     container_name: nodeappcontainer
     build: .
-    image: nodeapp:v3
+    image: nodeapp_jwt:v1
     restart: unless-stopped
     ports:
       - 3000:3000
