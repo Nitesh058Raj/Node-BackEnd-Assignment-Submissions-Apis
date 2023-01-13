@@ -1,15 +1,11 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import Response from '../domain/response.js';
+import HttpStatus from '../domain/HttpStatus.js';
 
 dotenv.config();
 
 const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
-
-const HttpStatus = {
-    OK: {code: 200, status: 'OK'},
-    FORBIDDEN: {code: 403, status: 'FORBIDDEN'}
-};
 
 export function createToken(x) {
     

@@ -2,14 +2,13 @@ import database from '../config/mysql.config.js';
 import Response from '../domain/response.js';
 import logger from '../util/logger.js';
 import QUERY from '../query/query.js';
-import { createToken } from '../token/token.config.js';
+import { createToken } from '../token/token.config.js'
 import HttpStatus from '../domain/httpstatus.js';
-
 
 export const getAssignments = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, fetching Assignments`);
 
-    database.query(QUERY.ASSIGNMENT.SELECT_ALL, (error, results) => {
+    database.query(QUERY.SELECT_ASSIGNMENTS, (error, results) => {
     
         if(!results) {
 
@@ -31,7 +30,7 @@ export const getAssignments = (req, res) => {
 export const getAssignment = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, fetching Assignments`);
     // db.query( query ,params(? = []) )
-    database.query(QUERY.ASSIGNMENT.SELECT, [req.params.id], (error, results) => {
+    database.query(QUERY.SELECT_ASSIGNMENT, [req.params.id], (error, results) => {
         if(!results[0]) {
 
             res.status(HttpStatus.NOT_FOUND.code)
@@ -48,7 +47,7 @@ export const getAssignment = (req, res) => {
 export const createAssignment = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, Posting Assignment`);
 
-    database.query(QUERY.ASSIGNMENT.CREATE, Object.values(req.body), (error, results) => {
+    database.query(QUERY.CREATE_ASSIGNMENT, Object.values(req.body), (error, results) => {
         if(!results) {
 
             res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
@@ -69,7 +68,7 @@ export const createAssignment = (req, res) => {
 export const updateAssignment = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, Checking for Assignment`);
 
-    database.query(QUERY.ASSIGNMENT.SELECT, [req.params.id], (error, results) => {
+    database.query(QUERY.SELECT_ASSIGNMENT, [req.params.id], (error, results) => {
         if(!results) {
 
             res.status(HttpStatus.NOT_FOUND.code)
@@ -98,7 +97,7 @@ export const updateAssignment = (req, res) => {
 export const deleteAssignment = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, Checking for Assignment`);
 
-    database.query(QUERY.ASSIGNMENT.SELECT, [req.params.id], (error, results) => {
+    database.query(QUERY.SELECT_ASSIGNMENT, [req.params.id], (error, results) => {
         if(!results) {
             
             res.status(HttpStatus.NOT_FOUND.code)
@@ -114,7 +113,7 @@ export const deleteAssignment = (req, res) => {
 
         } else {     
 
-            database.query(QUERY.ASSIGNMENT.DELETE, [req.params.id], (error, results) => {
+            database.query(QUERY.DELETE_ASSIGNMENT, [req.params.id], (error, results) => {
                 if(error)
                 {
                     
@@ -129,4 +128,3 @@ export const deleteAssignment = (req, res) => {
     });
 
 };
-

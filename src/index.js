@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 
 import Response from './domain/response.js';
-import HttpStatus from './controller/assignments.controller.js';
+import HttpStatus from './domain/httpstatus.js';
 import logger from './util/logger.js';
 
-import asRoute from './route/assignments.route.js';
+import asRoute from './route/route.js';
 
 dotenv.config();
 const PORT = process.env.SERVER_PORT || 3000;
