@@ -2,7 +2,6 @@ import database from '../config/mysql.config.js';
 import Response from '../domain/response.js';
 import logger from '../util/logger.js';
 import QUERY from '../query/query.js';
-import { createToken } from '../token/token.config.js';
 import HttpStatus from '../domain/httpstatus.js';
 
 
@@ -76,7 +75,13 @@ export const updateAssignment = (req, res) => {
 
                 .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
        
-        } else {     
+        } else if (!results[0]) { 
+          
+            res.status(HttpStatus.NOT_FOUND.code)
+
+                .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
+        }
+        else {     
 
             database.query(QUERY.UPDATE_ASSIGNMENT, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)

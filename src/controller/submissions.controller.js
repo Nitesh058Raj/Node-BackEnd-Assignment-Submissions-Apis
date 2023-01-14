@@ -2,13 +2,13 @@ import database from '../config/mysql.config.js';
 import Response from '../domain/response.js';
 import logger from '../util/logger.js';
 import QUERY from '../query/query.js';
-import { createToken } from '../token/token.config.js'
 import HttpStatus from '../domain/httpstatus.js';
 
-export const getAssignments = (req, res) => {
+
+export const getSubmissions = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, fetching Assignments`);
 
-    database.query(QUERY.SELECT_ASSIGNMENTS, (error, results) => {
+    database.query(QUERY.SUBMISSION.SELECT_ALL, (error, results) => {
     
         if(!results) {
 
@@ -27,10 +27,10 @@ export const getAssignments = (req, res) => {
 };
 
 
-export const getAssignment = (req, res) => {
+export const getSubmission= (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, fetching Assignments`);
     // db.query( query ,params(? = []) )
-    database.query(QUERY.SELECT_ASSIGNMENT, [req.params.id], (error, results) => {
+    database.query(QUERY.SUBMISSION.SELECT, [req.params.id], (error, results) => {
         if(!results[0]) {
 
             res.status(HttpStatus.NOT_FOUND.code)
@@ -44,10 +44,11 @@ export const getAssignment = (req, res) => {
     });
 };
 
-export const createAssignment = (req, res) => {
+
+export const createSubmission = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, Posting Assignment`);
 
-    database.query(QUERY.CREATE_ASSIGNMENT, Object.values(req.body), (error, results) => {
+    database.query(QUERY.SUBMISSION.CREATE, Object.values(req.body), (error, results) => {
         if(!results) {
 
             res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
@@ -65,10 +66,10 @@ export const createAssignment = (req, res) => {
 };
 
 
-export const updateAssignment = (req, res) => {
+export const updateSubmission = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, Checking for Assignment`);
 
-    database.query(QUERY.SELECT_ASSIGNMENT, [req.params.id], (error, results) => {
+    database.query(QUERY.SUBMISSION.SELECT, [req.params.id], (error, results) => {
         if(!results) {
 
             res.status(HttpStatus.NOT_FOUND.code)
@@ -77,7 +78,7 @@ export const updateAssignment = (req, res) => {
        
         } else {     
 
-            database.query(QUERY.UPDATE_ASSIGNMENT, [...Object.values(req.body), req.params.id], (error, results) => {
+            database.query(QUERY.SUBMISSION.UPDATE, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
                 {
                     
@@ -93,11 +94,10 @@ export const updateAssignment = (req, res) => {
 };
 
 
-
-export const deleteAssignment = (req, res) => {
+export const deleteSubmission = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, Checking for Assignment`);
 
-    database.query(QUERY.SELECT_ASSIGNMENT, [req.params.id], (error, results) => {
+    database.query(QUERY.SUBMISSION.SELECT, [req.params.id], (error, results) => {
         if(!results) {
             
             res.status(HttpStatus.NOT_FOUND.code)
@@ -113,7 +113,7 @@ export const deleteAssignment = (req, res) => {
 
         } else {     
 
-            database.query(QUERY.DELETE_ASSIGNMENT, [req.params.id], (error, results) => {
+            database.query(QUERY.SUBMISSION.DELETE, [req.params.id], (error, results) => {
                 if(error)
                 {
                     
