@@ -127,8 +127,8 @@ export const deleteAssignment = (req, res) => {
                     .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`, {'Error' : error})) 
        
                 } 
-                res.status(HttpStatus.CREATED.code)                                                                        
-                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Assignment deleted`)) 
+                res.status(HttpStatus.OK.code)                                                                        
+                 .send(new Response(HttpStatus.OK.code, HttpStatus.CREATED.status, `Assignment deleted`)) 
             })
         }
     });

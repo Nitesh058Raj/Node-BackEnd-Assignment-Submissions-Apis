@@ -17,7 +17,7 @@ const QUERY = {
 
     SUBMISSION: {
         SELECT_ALL: 'SELECT * FROM Submissions',
-        CREATE: 'INSERT INTO Submissions (assignment_id, student_id, file) VALUES (?, ?, ?)',
+        CREATE: 'INSERT INTO Submissions (assignment_id, student_id, document) VALUES (?,?,?)',
         UPDATE: 'UPDATE Submissions SET file = ? WHERE submission_id = ?', 
         DELETE: 'DELETE FROM Submissions WHERE submission_id = ?'
     }

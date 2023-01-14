@@ -6,19 +6,19 @@ import HttpStatus from '../domain/httpstatus.js';
 
 
 export const getSubmissions = (req, res) => {
-    logger.info(`${req.method} ${req.originalUrl}, fetching Assignments`);
+    logger.info(`${req.method} ${req.originalUrl}, fetching Submissions`);
 
     database.query(QUERY.SUBMISSION.SELECT_ALL, (error, results) => {
     
         if(!results) {
 
             res.status(HttpStatus.OK.code)
-                .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `No Assignments are Found`))
+                .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `No Submmisons are Found`))
        
         } else {     
 
              res.status(HttpStatus.OK.code)                                                                        
-                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `All Assignments: `,{ Assignments: results}))
+                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `All Submisssions :  `,{ Submissions: results}))
         
         }
     
@@ -28,7 +28,7 @@ export const getSubmissions = (req, res) => {
 
 
 export const getSubmission= (req, res) => {
-    logger.info(`${req.method} ${req.originalUrl}, fetching Assignments`);
+    logger.info(`${req.method} ${req.originalUrl}, fetching Submission...`);
     // db.query( query ,params(? = []) )
     database.query(QUERY.SUBMISSION.SELECT, [req.params.id], (error, results) => {
         if(!results[0]) {
@@ -38,7 +38,7 @@ export const getSubmission= (req, res) => {
         } else {     
 
              res.status(HttpStatus.OK.code)                                                                        
-                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `Assignment Found`,{ Assignment: results}))  
+                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `Submission Found`,{ Submission: results}))  
  
         }
     });
@@ -46,7 +46,7 @@ export const getSubmission= (req, res) => {
 
 
 export const createSubmission = (req, res) => {
-    logger.info(`${req.method} ${req.originalUrl}, Posting Assignment`);
+    logger.info(`${req.method} ${req.originalUrl}, Posting Submission...`);
 
     database.query(QUERY.SUBMISSION.CREATE, Object.values(req.body), (error, results) => {
         if(!results) {
@@ -58,7 +58,7 @@ export const createSubmission = (req, res) => {
         } else {     
 
              res.status(HttpStatus.CREATED.code)                                                                        
-                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Assignment Created`,{ Assignment: results})) 
+                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Submission submited `,{ Submission: results})) 
         
         }
     });
@@ -67,14 +67,14 @@ export const createSubmission = (req, res) => {
 
 
 export const updateSubmission = (req, res) => {
-    logger.info(`${req.method} ${req.originalUrl}, Checking for Assignment`);
+    logger.info(`${req.method} ${req.originalUrl}, Checking for Submission...`);
 
     database.query(QUERY.SUBMISSION.SELECT, [req.params.id], (error, results) => {
         if(!results) {
 
             res.status(HttpStatus.NOT_FOUND.code)
 
-                .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
+                .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `No data Found`)) 
        
         } else {     
 
@@ -87,7 +87,7 @@ export const updateSubmission = (req, res) => {
        
                 } 
                 res.status(HttpStatus.CREATED.code)                                                                        
-                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Assignment Updated`,{ Assignment: results})) 
+                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Submission Updated`,{ Assignment: results})) 
             })
         }
     });
@@ -95,7 +95,7 @@ export const updateSubmission = (req, res) => {
 
 
 export const deleteSubmission = (req, res) => {
-    logger.info(`${req.method} ${req.originalUrl}, Checking for Assignment`);
+    logger.info(`${req.method} ${req.originalUrl}, Checking for Submission`);
 
     database.query(QUERY.SUBMISSION.SELECT, [req.params.id], (error, results) => {
         if(!results) {
@@ -121,8 +121,8 @@ export const deleteSubmission = (req, res) => {
                     .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`, {'Error' : error})) 
        
                 } 
-                res.status(HttpStatus.CREATED.code)                                                                        
-                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Assignment deleted`)) 
+                res.status(HttpStatus.OK.code)                                                                        
+                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.OK.status, `Submission deleted`)) 
             })
         }
     });
