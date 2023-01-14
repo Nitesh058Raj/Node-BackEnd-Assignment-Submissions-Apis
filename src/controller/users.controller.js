@@ -5,7 +5,7 @@ import QUERY from '../query/query.js';
 import { createToken } from '../token/token.config.js';
 import HttpStatus from '../domain/httpstatus.js';
 
-export const CreateUser = (req, res) => {
+export const createUser = (req, res) => {
 
     logger.info(`${req.method} ${req.originalUrl}, Creating User...`);
     

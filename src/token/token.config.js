@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import Response from '../domain/response.js';
-import HttpStatus from '../domain/HttpStatus.js';
+import HttpStatus from '../domain/httpstatus.js';
 
 dotenv.config();
 

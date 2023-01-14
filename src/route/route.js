@@ -10,8 +10,8 @@ const asRoute = express.Router();
 asRoute.route('/auth')
     .post(createUser)
 
-asRoute.route('/users')
-    .get( verifyToken, getUsers)
+// asRoute.route('/users')
+//     .get( verifyToken, getUsers)
 
 asRoute.route('/assignment')
     .get( verifyToken, verifyTeacher, getAssignments)
