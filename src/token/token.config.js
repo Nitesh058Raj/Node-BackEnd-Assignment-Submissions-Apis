@@ -23,17 +23,9 @@ export const verifyToken = ( req, res, next) => {
         const bearer = bearerHeader.split(" ");
         const btoken = bearer[1];
         req.token = btoken;
-     
-        jwt.verify(req.token, SECRETE_KEY, (error, authenticationData) => {
-            if (error) {
-            
-               return res.status(HttpStatus.FORBIDDEN.code)
-                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
-    
-            }
-        });
-
-
+        
+        //jwt.verify <-- [with route <-- if..else] <-- for teacher/student
+        
      } else {
 
        return  res.status(HttpStatus.FORBIDDEN.code)
@@ -41,9 +33,45 @@ export const verifyToken = ( req, res, next) => {
      } 
      next();
 
+}; 
+
+export const verifyTeacher = ( req, res, next) => {
+ 
+    jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
+        if (error) {
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+        }
+
+        if (authData.role !== 'teacher')
+        {
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+        }
+
+    });
+    next();
 };
 
 
+export const verifyStudent = ( req, res, next) => {
+ 
+    jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
+        if (error) {
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+        }
+
+        if (authData.role !== 'student')
+        {
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+        }
+
+    });
+
+    next();
+};
 
 //export default {createToken, verifyToken}; 
 
