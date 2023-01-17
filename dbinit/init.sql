@@ -30,7 +30,6 @@ CREATE TABLE Submissions (
     assignment_id BIGINT  UNSIGNED NOT NULL,
     student_id    BIGINT  UNSIGNED NOT NULL,
     document      TEXT DEFAULT NULL,
-    marks         SMALLINT DEFAULT 0,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (submission_id),
     FOREIGN KEY (assignment_id) REFERENCES Assignments(assignment_id),

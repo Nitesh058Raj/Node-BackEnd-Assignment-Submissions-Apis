@@ -1,6 +1,7 @@
 -- CONSTRAINT UQ_assignments_Title UNIQUE (title)
 -- CONSTRAINT UQ_users_Email UNIQUE (faculty_email)
 
+--    marks         SMALLINT DEFAULT 0,
 -- If we use any other method for Authentication we can use below table 
 -- Or might want to go for eassy early Cryptografy (encryption/decryption algos) in project
 -- CREATE TABLE Authentication (
