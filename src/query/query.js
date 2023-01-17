@@ -20,6 +20,11 @@ const QUERY = {
         CREATE: 'INSERT INTO Submissions (assignment_id, student_id, document) VALUES (?,?,?)',
         UPDATE: 'UPDATE Submissions SET file = ? WHERE submission_id = ?', 
         DELETE: 'DELETE FROM Submissions WHERE submission_id = ?'
+    },
+
+    SORT: {
+        DUE_DATE: 'SELECT * FROM Assignments ORDER BY due_date ASC',
+        GRADE:'SELECT * FROM Assignments ORDER BY grade DESC'
     }
 };
 

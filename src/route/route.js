@@ -8,7 +8,7 @@ import { verifyToken, verifyStudent, verifyTeacher } from '../token/token.config
 const asRoute = express.Router();
 
 asRoute.route('/auth')
-    .post(createUser)
+    .post(createUser);
 
 // asRoute.route('/users')
 //     .get( verifyToken, getUsers)
@@ -17,16 +17,22 @@ asRoute.route('/assignment')
     .get( verifyToken, verifyTeacher, getAssignments)
     .post( verifyToken, verifyTeacher, createAssignment);
 
+asRoute.route('/assignment/due')
+    .get( verifyToken, verifyTeacher, sortAssignmentByDueDate);
+
+asRoute.route('/assignment/grade') 
+    .get( verifyToken, verifyTeacher, sortAssignmentByGrade);
+
 asRoute.route('/assignment/:id')
     .get( verifyToken, verifyTeacher, getAssignment)
     .post( verifyToken, verifyTeacher, updateAssignment);
 
 asRoute.route('/assignment/delete/:id')
-    .get( verifyToken, verifyTeacher, deleteAssignment)
+    .get( verifyToken, verifyTeacher, deleteAssignment);
 
 asRoute.route('/submission')
     .get( verifyToken, verifyStudent, getSubmissions)
-    .post( verifyToken, verifyStudent, createSubmission)
+    .post( verifyToken, verifyStudent, createSubmission);
 
 asRoute.route('/submission/:id')
     .get( verifyToken, verifyStudent, getSubmission)

@@ -135,3 +135,39 @@ export const deleteAssignment = (req, res) => {
 
 };
 
+
+export const sortAssignmentByDueDate = (req, res) => {
+    logger.info(`${req.method} ${req.originalUrl}, fetching Assignments`);
+    // db.query( query ,params(? = []) )
+    database.query(QUERY.SORT.DUE_DATE, (error, results) => {
+        if(!results) {
+
+            res.status(HttpStatus.NOT_FOUND.code)
+                .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Data not found ` ))       
+        } else {     
+
+             res.status(HttpStatus.OK.code)                                                                        
+                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `Assignments sorted by due dates`,{ Assignments: results}))  
+ 
+        }
+    });
+};
+
+
+export const sortAssignmentByGrade = (req, res) => {
+    logger.info(`${req.method} ${req.originalUrl}, fetching Assignments`);
+    // db.query( query ,params(? = []) )
+    database.query(QUERY.SORT.GRADE, (error, results) => {
+        if(!results) {
+
+            res.status(HttpStatus.NOT_FOUND.code)
+                .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Data not found ` ))       
+        } else {     
+
+             res.status(HttpStatus.OK.code)                                                                        
+                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `Sorted Assignments Found`,{ Assignments: results}))  
+ 
+        }
+    });
+};
+

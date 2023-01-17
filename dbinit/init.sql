@@ -29,7 +29,7 @@ CREATE TABLE Submissions (
     submission_id BIGINT  UNSIGNED NOT NULL AUTO_INCREMENT,
     assignment_id BIGINT  UNSIGNED NOT NULL,
     student_id    BIGINT  UNSIGNED NOT NULL,
-    document VARCHAR(255) DEFAULT NULL,
+    document      TEXT DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (submission_id),
     FOREIGN KEY (assignment_id) REFERENCES Assignments(assignment_id),
