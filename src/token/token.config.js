@@ -11,7 +11,7 @@ const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
 
 export function createToken(x) {
    
-    database.query(QUERY.USER.EMAIL, [x], (error, results) => {
+    database.query(QUERY.USER.EMAIL, Object.values(x), (error, results) => {
         if(error) {
             
             return res.status(HttpStatus.NOT_FOUND.code)

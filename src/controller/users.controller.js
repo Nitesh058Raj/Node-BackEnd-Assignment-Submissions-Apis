@@ -21,6 +21,7 @@ export const createUser = (req, res) => {
     });
             
     const token = createToken(req.body.email);
+    console.log(token);
             
     res.status(HttpStatus.OK.code)
                
