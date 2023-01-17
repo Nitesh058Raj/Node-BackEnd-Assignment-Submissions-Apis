@@ -3,7 +3,7 @@ import express from 'express';
 import {getAssignments, getAssignment, createAssignment, updateAssignment, deleteAssignment } from '../controller/assignments.controller.js';
 import { createUser } from '../controller/users.controller.js';
 import {getSubmissions, getSubmission, createSubmission, updateSubmission, deleteSubmission} from '../controller/submissions.controller.js';
-import { verifyToken, verifyStudent, verifyTeacher } from '../token/token.config.js';
+import { verifyToken, verifyStudent, verifyTeacher, veriftAll } from '../token/token.config.js';
 
 const asRoute = express.Router();
 
@@ -14,28 +14,28 @@ asRoute.route('/auth')
 //     .get( verifyToken, getUsers)
 
 asRoute.route('/assignment')
-    .get( verifyToken, verifyTeacher, getAssignments)
+    .get( verifyToken, verifyAll, getAssignments)
     .post( verifyToken, verifyTeacher, createAssignment);
 
 asRoute.route('/assignment/due')
-    .get( verifyToken, verifyTeacher, sortAssignmentByDueDate);
+    .get( verifyToken, verifyAll, sortAssignmentByDueDate);
 
 asRoute.route('/assignment/grade') 
-    .get( verifyToken, verifyTeacher, sortAssignmentByGrade);
+    .get( verifyToken, verifyAll, sortAssignmentByGrade);
 
 asRoute.route('/assignment/:id')
-    .get( verifyToken, verifyTeacher, getAssignment)
+    .get( verifyToken, verifyAll, getAssignment)
     .post( verifyToken, verifyTeacher, updateAssignment);
 
 asRoute.route('/assignment/delete/:id')
     .get( verifyToken, verifyTeacher, deleteAssignment);
 
 asRoute.route('/submission')
-    .get( verifyToken, verifyStudent, getSubmissions)
+    .get( verifyToken, verifyAll, getSubmissions)
     .post( verifyToken, verifyStudent, createSubmission);
 
 asRoute.route('/submission/:id')
-    .get( verifyToken, verifyStudent, getSubmission)
+    .get( verifyToken, verifyAll, getSubmission)
     .post( verifyToken, verifyStudent, updateSubmission);
 
 asRoute.route('/submission/delete/:id')

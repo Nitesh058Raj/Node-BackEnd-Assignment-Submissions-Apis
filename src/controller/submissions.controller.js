@@ -3,6 +3,8 @@ import Response from '../domain/response.js';
 import logger from '../util/logger.js';
 import QUERY from '../query/query.js';
 import HttpStatus from '../domain/httpstatus.js';
+import {verifyUserId} from '../token/token.config.js';
+
 
 
 export const getSubmissions = (req, res) => {
@@ -78,6 +80,9 @@ export const updateSubmission = (req, res) => {
        
         } else {     
 
+            verifyUserId(results.student_id); 
+
+
             database.query(QUERY.SUBMISSION.UPDATE, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
                 {
@@ -112,6 +117,9 @@ export const deleteSubmission = (req, res) => {
        
 
         } else {     
+ 
+            verifyUserId(results.student_id); 
+
 
             database.query(QUERY.SUBMISSION.DELETE, [req.params.id], (error, results) => {
                 if(error)

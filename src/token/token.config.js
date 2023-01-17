@@ -2,16 +2,50 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import Response from '../domain/response.js';
 import HttpStatus from '../domain/httpstatus.js';
+import database from '../config/mysql.config.js';
 
 dotenv.config();
 
 const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
 
 export function createToken(x) {
-    
-   return jwt.sign(x , SECRETE_KEY)
+   
+    database.query(QUERY.USER.EMAIL, [x], (error, results) => {
+        if(error) {
+            
+            return res.status(HttpStatus.NOT_FOUND.code)
+
+                      .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
+       
+        }  
+        return jwt.sign(results , SECRETE_KEY)
+
+    };
 
 };
+
+// Userid checking will determine the teachers (t1, t2, ...., tn) or students (s1, s2, ..., sn) 
+export function verifyUserId(x){
+
+    jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
+        if (error) {
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+        }
+                
+        if (authData.user_id == x) {
+
+            return logger.info(`${req.method} ${req.originalUrl}, Authentication for Assignment done`);
+
+        }  else { 
+            
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+        }
+    };
+
+};
+
 
 export const verifyToken = ( req, res, next) => {
 
@@ -24,7 +58,7 @@ export const verifyToken = ( req, res, next) => {
         const btoken = bearer[1];
         req.token = btoken;
         
-        //jwt.verify <-- [with route <-- if..else] <-- for teacher/student
+       //jwt.verify <-- [with route <-- if..else] <-- for teacher/student
         
      } else {
 
@@ -61,17 +95,33 @@ export const verifyStudent = ( req, res, next) => {
             return res.status(HttpStatus.FORBIDDEN.code)
                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
         }
-
+        // For Every Student
         if (authData.role !== 'student')
         {
             return res.status(HttpStatus.FORBIDDEN.code)
                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
         }
+        
+               
 
     });
 
     next();
 };
 
+
+
+export const verifyAll = ( req, res, next) => {
+ 
+    jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
+        if (error) {
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+        }
+    });
+
+    next();
+
+};
 //export default {createToken, verifyToken}; 
 

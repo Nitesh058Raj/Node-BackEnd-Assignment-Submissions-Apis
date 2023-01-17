@@ -17,14 +17,14 @@ export const createUser = (req, res) => {
                 
                 .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISE`, {'Error' : error}))   
         
-        } else { 
-            
-            const token = createToken(req.body);
-            
-            res.status(HttpStatus.OK.code)
-               
-                .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, { token: token }))
         }
     });
+            
+    const token = createToken(req.body.email);
+            
+    res.status(HttpStatus.OK.code)
+               
+       .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, { token: token }))
+    
 };
 
