@@ -20,7 +20,7 @@ export function createToken(x) {
         }  
         return jwt.sign(results , SECRETE_KEY)
 
-    };
+    });
 
 };
 
@@ -42,7 +42,7 @@ export function verifyUserId(x){
             return res.status(HttpStatus.FORBIDDEN.code)
                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
         }
-    };
+    });
 
 };
 
