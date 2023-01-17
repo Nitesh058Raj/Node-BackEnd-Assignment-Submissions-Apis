@@ -13,9 +13,9 @@ export const createUser = (req, res) => {
         
         if(error) {           
             
-            res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
+            return res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
                 
-                .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISE`, {'Error' : error}))   
+                        .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISE`, {'Error' : error}))   
         
         }
     });

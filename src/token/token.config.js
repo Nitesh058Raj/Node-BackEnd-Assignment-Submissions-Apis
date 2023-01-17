@@ -11,15 +11,18 @@ const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
 
 export function createToken(x) {
    
-    database.query(QUERY.USER.EMAIL, Object.values(x), (error, results) => {
-        if(error) {
+    database.query(QUERY.USER.EMAIL, x, (error, results) => {
+        // if(error) {
             
-            return res.status(HttpStatus.NOT_FOUND.code)
+        //     return res.status(HttpStatus.NOT_FOUND.code)
 
-                      .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
+        //               .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
        
-        }  
-        results = JSON.stringify(results);
+        // }  
+        logger.info(results);
+        logger.info(typeof(results));
+        logger.info(JSON.stringify(results));
+        // results = JSON.Object(results);
         return jwt.sign(results , SECRETE_KEY)
 
     });
