@@ -13,7 +13,7 @@ const QUERY = {
         CREATE: 'INSERT INTO Users (name, email, role) VALUES (?, ?, ?)',
         UPDATE: 'UPDATE Users SET name = ?, email = ? WHERE user_id = ?',
         DELETE: 'DELETE FROM Users WHERE user_id = ?',
-        EMAIL: 'SELECT email FROM Users WHERE user_id = ?'
+        EMAIL: 'SELECT * FROM Users WHERE user_id = ?'
     },
 
     SUBMISSION: {

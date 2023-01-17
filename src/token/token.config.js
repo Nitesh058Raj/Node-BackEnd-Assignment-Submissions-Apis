@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import Response from '../domain/response.js';
 import HttpStatus from '../domain/httpstatus.js';
 import database from '../config/mysql.config.js';
+import QUERY from '../query/query.js';
 
 dotenv.config();
 
