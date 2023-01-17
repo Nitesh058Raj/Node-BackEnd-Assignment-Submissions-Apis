@@ -19,6 +19,7 @@ export function createToken(x) {
                       .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
        
         }  
+        results = JSON.stringify(results);
         return jwt.sign(results , SECRETE_KEY)
 
     });
