@@ -14,32 +14,32 @@ asRoute.route('/auth')
 //     .get( verifyToken, getUsers)
 
 asRoute.route('/assignment')
-    .get( verifyToken, verifyAll, getAssignments)
-    .post( verifyToken, verifyTeacher, createAssignment);
+    .get( verifyToken,  getAssignments)
+    .post( verifyToken,  createAssignment);
 
 asRoute.route('/assignment/due')
-    .get( verifyToken, verifyAll, sortAssignmentByDueDate);
+    .get( verifyToken,  sortAssignmentByDueDate);
 
 asRoute.route('/assignment/grade') 
-    .get( verifyToken, verifyAll, sortAssignmentByGrade);
+    .get( verifyToken,  sortAssignmentByGrade);
 
 asRoute.route('/assignment/:id')
-    .get( verifyToken, verifyAll, getAssignment)
-    .post( verifyToken, verifyTeacher, updateAssignment);
+    .get( verifyToken,  getAssignment)
+    .post( verifyToken,  updateAssignment);
 
 asRoute.route('/assignment/delete/:id')
-    .get( verifyToken, verifyTeacher, deleteAssignment);
+    .get( verifyToken,  deleteAssignment);
 
 asRoute.route('/submission')
-    .get( verifyToken, verifyAll, getSubmissions)
-    .post( verifyToken, verifyStudent, createSubmission);
+    .get( verifyToken,  getSubmissions)
+    .post( verifyToken,  createSubmission);
 
 asRoute.route('/submission/:id')
-    .get( verifyToken, verifyAll, getSubmission)
-    .post( verifyToken, verifyStudent, updateSubmission);
+    .get( verifyToken,  getSubmission)
+    .post( verifyToken,  updateSubmission);
 
 asRoute.route('/submission/delete/:id')
-    .get( verifyToken, verifyStudent, deleteSubmission);
+    .get( verifyToken,  deleteSubmission);
 
 export default asRoute;
 

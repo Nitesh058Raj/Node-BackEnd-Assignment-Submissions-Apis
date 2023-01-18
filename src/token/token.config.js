@@ -51,6 +51,16 @@ export const verifyToken = ( req, res, next) => {
         req.token = btoken;
         logger.info(`Token extracted...`);
        //jwt.verify <-- [with route <-- if..else] <-- for teacher/student
+        logger.info(`veriFy...`);
+        jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
+            if (error) {
+                return res.status(HttpStatus.FORBIDDEN.code)
+                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
+            }
+            logger.info(authData);
+        });
+
+    next();
         
      } else {
 
@@ -61,6 +71,7 @@ export const verifyToken = ( req, res, next) => {
      next();
 
 }; 
+
 
 export const verifyTeacher = ( req, res, next) => {
     
