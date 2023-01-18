@@ -27,37 +27,39 @@ export const createUser = (req, res) => {
           );
         return;
       } else {
-        database.query(QUERY.USER.EMAIL, [req.body.email], (error, results) => {
-          if (error) {
-            res
-              .status(HttpStatus.NOT_FOUND.code)
-
-              .send(
-                new Response(
-                  HttpStatus.NOT_FOUND.code,
-                  HttpStatus.NOT_FOUND.status,
-                  `Not Found`
-                )
-              );
-              return;
-          } else {
-            logger.info(results);
-            logger.info(results[0]);
-            logger.info(typeof results);
-            logger.info(JSON.stringify(results));
-            // results = JSON.Object(results);
-            const token = createToken(results[0]);
-            console.log(token);
-
-            res.status(HttpStatus.OK.code).send(
-              new Response(HttpStatus.OK.code, HttpStatus.OK.status, {
-                token: token,
-              })
-            );
-            return;
-          }
-        });
+        logger.info('Done Creating User...');
       }
     }
   );
+
+  database.query(QUERY.USER.EMAIL, [req.body.email], (error, results) => {
+    if (error) {
+      res
+        .status(HttpStatus.NOT_FOUND.code)
+
+        .send(
+          new Response(
+            HttpStatus.NOT_FOUND.code,
+            HttpStatus.NOT_FOUND.status,
+            `Not Found`
+          )
+        );
+      return;
+    } else {
+      logger.info(results);
+      logger.info(results[0]);
+      logger.info(typeof results);
+      logger.info(JSON.stringify(results));
+      // results = JSON.Object(results);
+      const token = createToken(results[0]);
+      logger.info(token);
+
+      res.status(HttpStatus.OK.code).send(
+        new Response(HttpStatus.OK.code, HttpStatus.OK.status, {
+          token: token,
+        })
+      );
+      return;
+    }
+  });
 };
