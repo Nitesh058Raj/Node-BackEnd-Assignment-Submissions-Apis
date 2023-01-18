@@ -30,8 +30,9 @@ export function verifyUserId(x){
 
         }  else { 
             
-            return res.status(HttpStatus.FORBIDDEN.code)
-                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+            res.status(HttpStatus.FORBIDDEN.code)
+                .send(new Response(HttpStatus.FORBIDDEN.code)) 
+            return;
         }
     });
 
@@ -48,13 +49,14 @@ export const verifyToken = ( req, res, next) => {
         const bearer = bearerHeader.split(" ");
         const btoken = bearer[1];
         req.token = btoken;
-        
+        logger.info(`Token extracted...`);
        //jwt.verify <-- [with route <-- if..else] <-- for teacher/student
         
      } else {
 
-       return  res.status(HttpStatus.FORBIDDEN.code)
-                .send(new Response(HttpStatus.FORBIDDEN.code) )
+        res.status(HttpStatus.FORBIDDEN.code)
+            .send(new Response(HttpStatus.FORBIDDEN.code) )
+        return;
      } 
      next();
 
