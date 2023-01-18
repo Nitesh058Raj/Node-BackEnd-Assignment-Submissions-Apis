@@ -33,10 +33,10 @@ export const createUser = (req, res) => {
         } else {
           logger.info(results);
           logger.info(results[0]);
-          logger.info(typeof results);
+         // logger.info(typeof results);
           logger.info(JSON.stringify(results));
           // results = JSON.Object(results);
-          const token = createToken(results[0]);
+          const token = createToken(JSON.stringify(results[0]));
           logger.info(token);
     
           res.status(HttpStatus.OK.code).send(
