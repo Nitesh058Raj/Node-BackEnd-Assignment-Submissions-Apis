@@ -29,13 +29,9 @@ export const createUser = (req, res) => {
                 `Not Found`
               )
             );
-          return;
+          
         } else {
-          logger.info(results);
-          logger.info(results[0]);
-         // logger.info(typeof results);
-          logger.info(JSON.stringify(results));
-          // results = JSON.Object(results);
+         
           const token = createToken(JSON.stringify(results[0]));
           logger.info(token);
     
@@ -44,7 +40,7 @@ export const createUser = (req, res) => {
               token: token,
             })
           );
-          return;
+          
         }
       });
     }
