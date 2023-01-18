@@ -42,7 +42,7 @@ CREATE PROCEDURE create_and_return(IN name VARCHAR(255),IN email VARCHAR(255) ,I
 BEGIN 
     INSERT INTO Users (name, email, role) VALUES (name, email, role);
     SET @NEW_ID = LAST_INSERT_ID();
-    SELECT * FROM Users WHERE user_id=@NEW_ID;
+    SELECT * FROM Users WHERE email=email;
 END //
 DELIMITER ;
 
