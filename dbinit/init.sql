@@ -40,7 +40,7 @@ CREATE TABLE Submissions (
 DELIMITER //
 CREATE PROCEDURE create_and_return(IN name VARCHAR(255),IN email VARCHAR(255) ,IN role ENUM('teacher', 'student') )
 BEGIN 
-    INSERT INTO Users (name, email, role) VALUES (name, email, role);
+    INSERT INTO Users(name, email, role) VALUES (name, email, role);
     SET @NEW_ID = LAST_INSERT_ID();
     SELECT * FROM Users WHERE email=email;
 END //
