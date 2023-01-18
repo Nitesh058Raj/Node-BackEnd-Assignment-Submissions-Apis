@@ -6,7 +6,7 @@ import { createToken } from "../token/token.config.js";
 import HttpStatus from "../domain/httpstatus.js";
 
 export const createUser = (req, res) => {
-  logger.info(`${req.method} ${req.originalUrl} ${req.body}, Creating User...`);
+  logger.info(`${req.method} ${req.originalUrl} , Creating User...`);
 
   database.query(
     QUERY.USER.CREATE_AND_RUTURN,
