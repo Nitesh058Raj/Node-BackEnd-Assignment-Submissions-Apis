@@ -7,25 +7,41 @@ import HttpStatus from '../domain/httpstatus.js';
 
 export const createUser = (req, res) => {
 
-    logger.info(`${req.method} ${req.originalUrl}, Creating User...`);
+    logger.info(`${req.method} ${req.originalUrl} ${req.body}, Creating User...`);
     
-    database.query(QUERY.USER.CREATE, Object.values(req.body), (error, results) => { 
+    database.query(QUERY.USER.CREATE_AND_RETURN, Object.values(req.body), (error, results) => { 
         
-        if(error) {           
+        if(!results) {           
             
-            return res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
+            res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
                 
-                        .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISE`, {'Error' : error}))   
+                .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISE`, {'Error' : error}))   
         
+        } else { 
+        // database.query(QUERY.USER.EMAIL, [req.body.email], (error, results) => {
+        //     if(error) {
+                
+        //         res.status(HttpStatus.NOT_FOUND.code)
+    
+        //             .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
+           
+        //     }  
+        logger.info(results);
+        logger.info(results[0]);
+        logger.info(typeof(results));
+        logger.info(JSON.stringify(results));
+        // results = JSON.Object(results);
+        const token = createToken(results[0][0]);
+        console.log(token);
+                
+        res.status(HttpStatus.OK.code)
+                
+                .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, { token: token }))
+    
         }
     });
             
-    const token = createToken(req.body.email);
-    console.log(token);
-            
-    res.status(HttpStatus.OK.code)
-               
-       .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, { token: token }))
+    
     
 };
 

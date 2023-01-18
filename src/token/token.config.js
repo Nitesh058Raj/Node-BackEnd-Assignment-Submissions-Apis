@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import Response from '../domain/response.js';
 import HttpStatus from '../domain/httpstatus.js';
-import database from '../config/mysql.config.js';
-import QUERY from '../query/query.js';
+// import database from '../config/mysql.config.js';
+// import QUERY from '../query/query.js';
 
 dotenv.config();
 
@@ -11,21 +11,7 @@ const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
 
 export function createToken(x) {
    
-    database.query(QUERY.USER.EMAIL, x, (error, results) => {
-        // if(error) {
-            
-        //     return res.status(HttpStatus.NOT_FOUND.code)
-
-        //               .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
-       
-        // }  
-        logger.info(results);
-        logger.info(typeof(results));
-        logger.info(JSON.stringify(results));
-        // results = JSON.Object(results);
-        return jwt.sign(results , SECRETE_KEY)
-
-    });
+    return jwt.sign(x , SECRETE_KEY)
 
 };
 
