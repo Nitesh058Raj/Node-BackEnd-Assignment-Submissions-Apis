@@ -41,6 +41,7 @@ export function verifyUserId(x){
 
 export const verifyToken = ( req, res, next) => {
 
+    logger.info('Start auth');
     const bearerHeader = req.headers["authorization"];
     
     //typeof bearerHeader !== undefined
@@ -59,8 +60,6 @@ export const verifyToken = ( req, res, next) => {
             }
             logger.info(authData);
         });
-
-    next();
         
      } else {
 
