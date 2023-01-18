@@ -1,8 +1,8 @@
 import express from 'express';
 
-import {getAssignments, getAssignment, createAssignment, updateAssignment, deleteAssignment, sortAssignmentByDueDate, sortAssignmentByGrade } from '../controller/assignments.controller.js';
+import { getAssignments, getAssignment, createAssignment, updateAssignment, deleteAssignment, sortAssignmentByDueDate, sortAssignmentByGrade } from '../controller/assignments.controller.js';
 import { createUser } from '../controller/users.controller.js';
-import {getSubmissions, getSubmission, createSubmission, updateSubmission, deleteSubmission} from '../controller/submissions.controller.js';
+import { getSubmissions, getSubmission, createSubmission, updateSubmission, deleteSubmission} from '../controller/submissions.controller.js';
 import { verifyToken, verifyStudent, verifyTeacher, verifyAll } from '../token/token.config.js';
 
 const asRoute = express.Router();

@@ -33,8 +33,7 @@ export const createUser = (req, res) => {
         } else {
          
           const token = createToken(JSON.stringify(results[0]));
-          logger.info(token);
-    
+          
           res.status(HttpStatus.OK.code).send(
             new Response(HttpStatus.OK.code, HttpStatus.OK.status, {
               token: token,

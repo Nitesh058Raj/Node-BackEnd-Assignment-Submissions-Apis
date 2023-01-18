@@ -61,13 +61,14 @@ export const verifyToken = ( req, res, next) => {
 }; 
 
 export const verifyTeacher = ( req, res, next) => {
- 
+    
+    logger.info(`VerifyTeacher...`);
     jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
         if (error) {
             return res.status(HttpStatus.FORBIDDEN.code)
                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
         }
-
+        logger.info(authData);
         if (authData.role !== 'teacher')
         {
             return res.status(HttpStatus.FORBIDDEN.code)
@@ -103,7 +104,8 @@ export const verifyStudent = ( req, res, next) => {
 
 
 export const verifyAll = ( req, res, next) => {
- 
+    
+    logger.info(`veriFy...`);
     jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
         if (error) {
             return res.status(HttpStatus.FORBIDDEN.code)
