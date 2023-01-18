@@ -12,7 +12,7 @@ export const createUser = (req, res) => {
     QUERY.USER.CREATE_AND_RETURN,
     Object.values(req.body),
     (error, results) => {
-      if (!results) {
+      if (error) {
         res
           .status(HttpStatus.INTERNAL_SERVER_ERROR.code)
 
