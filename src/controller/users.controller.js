@@ -12,6 +12,8 @@ export const createUser = (req, res) => {
     QUERY.USER.CREATE_AND_RUTURN,
     Object.values(req.body),
     (error, results) => {
+        logger.info(error);
+        logger.info(QUERY.USER.CREATE_AND_RUTURN);
       if (error) {
         res
           .status(HttpStatus.INTERNAL_SERVER_ERROR.code)
