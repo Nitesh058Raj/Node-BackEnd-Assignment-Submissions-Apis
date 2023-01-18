@@ -9,7 +9,7 @@ export const createUser = (req, res) => {
   logger.info(`${req.method} ${req.originalUrl} ${req.body}, Creating User...`);
 
   database.query(
-    QUERY.USER.CREATE_AND_RETURN,
+    QUERY.USER.CREATE_AND_RUTURN,
     Object.values(req.body),
     (error, results) => {
       if (error) {
