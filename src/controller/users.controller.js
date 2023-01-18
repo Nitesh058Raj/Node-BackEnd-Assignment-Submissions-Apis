@@ -25,7 +25,7 @@ export const createUser = (req, res) => {
               { Error: error }
             )
           );
-        return;
+        
       } else {
         logger.info('Done Creating User...');
       }
