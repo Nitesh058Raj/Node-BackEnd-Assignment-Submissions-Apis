@@ -90,8 +90,10 @@ export const updateSubmission = (req, res) => {
                     .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`, {'Error' : error})) 
        
                 } 
+                else {
                 res.status(HttpStatus.CREATED.code)                                                                        
-                    .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Submission Updated`,{ Submission: results})) 
+                    .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Submission Updated`,{ Submission: results}))  
+                }
             })
         }
     });
