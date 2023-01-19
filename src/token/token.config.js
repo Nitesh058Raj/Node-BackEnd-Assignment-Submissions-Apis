@@ -21,6 +21,7 @@ export function createToken(x) {
 export const verifyToken = ( req, res, next) => {
 
     logger.info(`Start auth`);
+    
     const bearerHeader = req.headers["authorization"];
     
     //typeof bearerHeader !== undefined
