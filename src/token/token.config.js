@@ -21,7 +21,7 @@ export function createToken(x) {
 export const verifyToken = ( req, res, next) => {
 
     logger.info(`Start auth`);
-    
+
     const bearerHeader = req.headers["authorization"];
     
     //typeof bearerHeader !== undefined
@@ -39,6 +39,8 @@ export const verifyToken = ( req, res, next) => {
                         .send(new Response(HttpStatus.FORBIDDEN.code)) 
             }
             logger.info(authData);
+            logger.info(authData["role"]);
+            logger.info(authData.role);
         });
         
      } else {
