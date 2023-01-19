@@ -80,7 +80,7 @@ export const updateSubmission = (req, res) => {
        
         } else {     
 
-            verifyUserId(results.student_id, req.token, res); 
+           // verifyUserId(results.student_id, req.token, res); 
 
             database.query(QUERY.SUBMISSION.UPDATE, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
@@ -119,7 +119,7 @@ export const deleteSubmission = (req, res) => {
 
         } else {     
  
-            verifyUserId(results.student_id); 
+            //verifyUserId(results.student_id); 
 
             database.query(QUERY.SUBMISSION.DELETE, [req.params.id], (error, results) => {
                 if(error)

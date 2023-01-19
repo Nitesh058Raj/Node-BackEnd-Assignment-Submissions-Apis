@@ -53,6 +53,7 @@ export const verifyToken = ( req, res, next) => {
 
 
 // Userid checking will determine the teachers (t1, t2, ...., tn) or students (s1, s2, ..., sn) 
+/*
 export function verifyUserId(x, token, res) {
     // req.token
     jwt.verify(token, SECRETE_KEY, (error, authData) => {
@@ -75,7 +76,8 @@ export function verifyUserId(x, token, res) {
         return;
     });
 
-};
+}; 
+*/
 
 
 export const verifyTeacher = ( req, res, next) => {

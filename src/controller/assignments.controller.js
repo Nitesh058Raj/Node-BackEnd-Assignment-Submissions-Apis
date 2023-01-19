@@ -83,7 +83,7 @@ export const updateAssignment = (req, res) => {
         }
         else {    
 
-            verifyUserId(results.teacher_id); 
+            //verifyUserId(results.teacher_id); 
 
             database.query(QUERY.UPDATE_ASSIGNMENT, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
@@ -121,7 +121,7 @@ export const deleteAssignment = (req, res) => {
 
         } else {     
             
-            verifyUserId(results.teacher_id); 
+           // verifyUserId(results.teacher_id); 
 
             database.query(QUERY.ASSIGNMENT.DELETE, [req.params.id], (error, results) => {
                 if(error)
