@@ -6,7 +6,7 @@ import HttpStatus from '../domain/httpstatus.js';
 import {verifyUserId} from '../token/token.config.js';
 
 export const getAssignments = (req, res) => {
-    logger.info(`${req.method} ${req.originalUrl}, fetching Assignments`);
+    logger.info(`${req.method} ${req.originalUrl}, fetching Assignments...`);
 
     database.query(QUERY.ASSIGNMENT.SELECT_ALL, (error, results) => {
     
@@ -45,7 +45,7 @@ export const getAssignment = (req, res) => {
 };
 
 export const createAssignment = (req, res) => {
-    logger.info(`${req.method} ${req.originalUrl}, Posting Assignment`);
+    logger.info(`${req.method} ${req.originalUrl}, Posting Assignment...`);
 
     database.query(QUERY.ASSIGNMENT.CREATE, Object.values(req.body), (error, results) => {
         if(!results) {
@@ -84,16 +84,17 @@ export const updateAssignment = (req, res) => {
         else {    
 
             verifyUserId(results.teacher_id); 
+
             database.query(QUERY.UPDATE_ASSIGNMENT, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
                 {
                     
                   res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
-                    .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`, {'Error' : error})) 
+                      .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`, {'Error' : error})) 
        
                 } 
                 res.status(HttpStatus.CREATED.code)                                                                        
-                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Assignment Updated`,{ Assignment: results})) 
+                    .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Assignment Updated`,{ Assignment: results})) 
             })
         }
     });

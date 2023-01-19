@@ -30,20 +30,12 @@ CREATE TABLE Submissions (
     submission_id BIGINT  UNSIGNED NOT NULL AUTO_INCREMENT,
     assignment_id BIGINT  UNSIGNED NOT NULL,
     student_id    BIGINT  UNSIGNED NOT NULL,
-    document      TEXT DEFAULT NULL,
+    docs          TEXT DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (submission_id),
     FOREIGN KEY (assignment_id) REFERENCES Assignments(assignment_id),
     FOREIGN KEY (student_id) REFERENCES Users(user_id)
 );
 
-DELIMITER //
-CREATE PROCEDURE create_and_return(IN name VARCHAR(255),IN email VARCHAR(255) ,IN role ENUM('teacher', 'student') )
-BEGIN 
-    INSERT INTO Users(name, email, role) VALUES (name, email, role);
-    SET @NEW_ID = LAST_INSERT_ID();
-    SELECT * FROM Users WHERE email=email;
-END //
-DELIMITER ;
 
 

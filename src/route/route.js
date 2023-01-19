@@ -3,7 +3,7 @@ import express from 'express';
 import { getAssignments, getAssignment, createAssignment, updateAssignment, deleteAssignment, sortAssignmentByDueDate, sortAssignmentByGrade } from '../controller/assignments.controller.js';
 import { createUser } from '../controller/users.controller.js';
 import { getSubmissions, getSubmission, createSubmission, updateSubmission, deleteSubmission} from '../controller/submissions.controller.js';
-import { verifyToken, verifyTeacher } from '../token/token.config.js';
+import { verifyToken, verifyTeacher , verifyStudent } from '../token/token.config.js';
 
 const asRoute = express.Router();
 
@@ -11,7 +11,7 @@ asRoute.route('/auth')
     .post(createUser);
 
 asRoute.route('/assignment')
-    .get( verifyToken, verifyTeacher,  getAssignments)
+    .get( verifyToken, getAssignments)
     .post( verifyToken, verifyTeacher,  createAssignment);
 
 asRoute.route('/assignment/due')
@@ -22,21 +22,21 @@ asRoute.route('/assignment/grade')
 
 asRoute.route('/assignment/:id')
     .get( verifyToken,  getAssignment)
-    .post( verifyToken,  updateAssignment); // verifyTeacherT1T2 --> auth here
+    .post( verifyToken, verifyTeacher, updateAssignment); // verifyUserId --> auth of perticular user --> in 'updateAssignment'
 
 asRoute.route('/assignment/delete/:id')
-    .get( verifyToken,  deleteAssignment);
+    .get( verifyToken,  verifyTeacher, deleteAssignment);
 
 asRoute.route('/submission')
     .get( verifyToken,  getSubmissions)
-    .post( verifyToken,  createSubmission);
+    .post( verifyToken, verifyStudent, createSubmission);
 
 asRoute.route('/submission/:id')
     .get( verifyToken,  getSubmission)
-    .post( verifyToken,  updateSubmission);
+    .post( verifyToken, verifyStudent, updateSubmission);
 
 asRoute.route('/submission/delete/:id')
-    .get( verifyToken,  deleteSubmission);
+    .get( verifyToken, verifyStudent, deleteSubmission);
 
 export default asRoute;
 

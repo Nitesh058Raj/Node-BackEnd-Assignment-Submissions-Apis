@@ -8,8 +8,9 @@ const QUERY = {
         DELETE: 'DELETE FROM Assignments WHERE assignment_id = ?'
     },
  
-    USER: {
-        SELECT_ALL: 'SELECT * FROM Users',  // For admins
+    USER: { // For admins
+        SELECT_ALL: 'SELECT * FROM Users',  
+        SELECT: 'SELECT * FROM Users WHERE user_id = ?',
         CREATE: 'INSERT INTO Users (name, email, role) VALUES (?, ?, ?)',
         UPDATE: 'UPDATE Users SET name = ?, email = ? WHERE user_id = ?',
         DELETE: 'DELETE FROM Users WHERE user_id = ?',
@@ -19,8 +20,9 @@ const QUERY = {
 
     SUBMISSION: {
         SELECT_ALL: 'SELECT * FROM Submissions',
-        CREATE: 'INSERT INTO Submissions (assignment_id, student_id, document) VALUES (?,?,?)',
-        UPDATE: 'UPDATE Submissions SET file = ? WHERE submission_id = ?', 
+        SELECT: 'SELECT * FROM Submissions WHERE submission_id = ?',
+        CREATE: 'INSERT INTO Submissions (assignment_id, student_id, docs) VALUES (?,?,?)',
+        UPDATE: 'UPDATE Submissions SET docs = ? WHERE submission_id = ?', 
         DELETE: 'DELETE FROM Submissions WHERE submission_id = ?'
     },
 

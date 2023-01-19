@@ -16,8 +16,6 @@ export function createToken(x) {
 
 };
 
-// Userid checking will determine the teachers (t1, t2, ...., tn) or students (s1, s2, ..., sn) 
-
 export const verifyToken = ( req, res, next) => {
 
     logger.info(`Start auth`);
@@ -53,6 +51,30 @@ export const verifyToken = ( req, res, next) => {
 
 }; 
 
+
+// Userid checking will determine the teachers (t1, t2, ...., tn) or students (s1, s2, ..., sn) 
+export function verifyUserId(x){
+
+    jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
+        if (error) {
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+        }
+                
+        if (authData.user_id == x) {
+
+            return logger.info(`${req.method} ${req.originalUrl}, Authentication for Assignment done`);
+
+        }  else { 
+            
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+            
+        }
+    });
+
+};
+
 export const verifyTeacher = ( req, res, next) => {
     
     logger.info(`VerifyTeacher...`);
@@ -73,30 +95,6 @@ export const verifyTeacher = ( req, res, next) => {
 };
 
 
-export function verifyUserId(x){
-
-    jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
-        if (error) {
-            return res.status(HttpStatus.FORBIDDEN.code)
-                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
-        }
-                
-        if (authData.user_id == x) {
-
-            return logger.info(`${req.method} ${req.originalUrl}, Authentication for Assignment done`);
-
-        }  else { 
-            
-            res.status(HttpStatus.FORBIDDEN.code)
-                .send(new Response(HttpStatus.FORBIDDEN.code)) 
-            return;
-        }
-    });
-
-};
-
-
-
 export const verifyStudent = ( req, res, next) => {
  
     jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
@@ -109,17 +107,14 @@ export const verifyStudent = ( req, res, next) => {
         {
             return res.status(HttpStatus.FORBIDDEN.code)
                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
-        }
-        
-               
+        }    
 
     });
 
     next();
 };
 
-
-
+/*
 export const verifyAll = ( req, res, next) => {
     
     logger.info(`veriFy...`);
@@ -134,4 +129,4 @@ export const verifyAll = ( req, res, next) => {
 
 };
 //export default {createToken, verifyToken}; 
-
+*/

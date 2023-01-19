@@ -8,7 +8,7 @@ import {verifyUserId} from '../token/token.config.js';
 
 
 export const getSubmissions = (req, res) => {
-    logger.info(`${req.method} ${req.originalUrl}, fetching Submissions`);
+    logger.info(`${req.method} ${req.originalUrl}, fetching Submissions...`);
 
     database.query(QUERY.SUBMISSION.SELECT_ALL, (error, results) => {
     
@@ -29,7 +29,7 @@ export const getSubmissions = (req, res) => {
 };
 
 
-export const getSubmission= (req, res) => {
+export const getSubmission = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, fetching Submission...`);
     // db.query( query ,params(? = []) )
     database.query(QUERY.SUBMISSION.SELECT, [req.params.id], (error, results) => {
@@ -82,7 +82,6 @@ export const updateSubmission = (req, res) => {
 
             verifyUserId(results.student_id); 
 
-
             database.query(QUERY.SUBMISSION.UPDATE, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
                 {
@@ -92,7 +91,7 @@ export const updateSubmission = (req, res) => {
        
                 } 
                 res.status(HttpStatus.CREATED.code)                                                                        
-                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Submission Updated`,{ Assignment: results})) 
+                    .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Submission Updated`,{ Submission: results})) 
             })
         }
     });
@@ -120,7 +119,6 @@ export const deleteSubmission = (req, res) => {
  
             verifyUserId(results.student_id); 
 
-
             database.query(QUERY.SUBMISSION.DELETE, [req.params.id], (error, results) => {
                 if(error)
                 {
@@ -130,7 +128,7 @@ export const deleteSubmission = (req, res) => {
        
                 } 
                 res.status(HttpStatus.OK.code)                                                                        
-                 .send(new Response(HttpStatus.CREATED.code, HttpStatus.OK.status, `Submission deleted`)) 
+                 .send(new Response(HttpStatus.OK.code, HttpStatus.OK.status, `Submission deleted`)) 
             })
         }
     });
