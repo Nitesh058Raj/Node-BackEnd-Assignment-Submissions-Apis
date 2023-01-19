@@ -3,7 +3,7 @@ import express from 'express';
 import { getAssignments, getAssignment, createAssignment, updateAssignment, deleteAssignment, sortAssignmentByDueDate, sortAssignmentByGrade } from '../controller/assignments.controller.js';
 import { createUser } from '../controller/users.controller.js';
 import { getSubmissions, getSubmission, createSubmission, updateSubmission, deleteSubmission} from '../controller/submissions.controller.js';
-import { verifyToken} from '../token/token.config.js';
+import { verifyToken } from '../token/token.config.js';
 
 const asRoute = express.Router();
 
@@ -11,8 +11,8 @@ asRoute.route('/auth')
     .post(createUser);
 
 asRoute.route('/assignment')
-    .get(  getAssignments)
-    .post( createAssignment);
+    .get( verifyToken, getAssignments)
+    .post( verifyToken, createAssignment);
 
 asRoute.route('/assignment/due')
     .get( verifyToken,  sortAssignmentByDueDate);
