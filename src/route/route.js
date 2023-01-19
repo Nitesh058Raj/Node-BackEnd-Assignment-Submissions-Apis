@@ -11,7 +11,7 @@ asRoute.route('/auth')
     .post(createUser);
 
 asRoute.route('/assignment')
-    .get( verifyToken,  getAssignments)
+    .get(  getAssignments)
     .post( verifyToken,  createAssignment);
 
 asRoute.route('/assignment/due')
