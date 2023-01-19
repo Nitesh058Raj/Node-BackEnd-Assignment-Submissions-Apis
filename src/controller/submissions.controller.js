@@ -3,7 +3,7 @@ import Response from '../domain/response.js';
 import logger from '../util/logger.js';
 import QUERY from '../query/query.js';
 import HttpStatus from '../domain/httpstatus.js';
-import {verifyUserId} from '../token/token.config.js';
+//import {verifyUserId} from '../token/token.config.js';
 
 
 
