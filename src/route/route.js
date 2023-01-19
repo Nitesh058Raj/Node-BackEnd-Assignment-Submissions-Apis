@@ -22,7 +22,7 @@ asRoute.route('/assignment/grade')
 
 asRoute.route('/assignment/:id')
     .get( verifyToken,  getAssignment)
-    .post( verifyToken,  updateAssignment);
+    .post( verifyToken,  updateAssignment); // verifyTeacherT1T2 --> auth here
 
 asRoute.route('/assignment/delete/:id')
     .get( verifyToken,  deleteAssignment);
