@@ -12,7 +12,7 @@ asRoute.route('/auth')
 
 asRoute.route('/assignment')
     .get(  getAssignments)
-    .post( verifyToken,  createAssignment);
+    .post( createAssignment);
 
 asRoute.route('/assignment/due')
     .get( verifyToken,  sortAssignmentByDueDate);
