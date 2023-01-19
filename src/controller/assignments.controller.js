@@ -85,7 +85,7 @@ export const updateAssignment = (req, res) => {
 
             //verifyUserId(results.teacher_id); 
 
-            database.query(QUERY.UPDATE_ASSIGNMENT, [...Object.values(req.body), req.params.id], (error, results) => {
+            database.query(QUERY.ASSIGNMENT.UPDATE, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
                 {
                     
