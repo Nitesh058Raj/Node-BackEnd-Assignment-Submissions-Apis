@@ -11,8 +11,8 @@ asRoute.route('/auth')
     .post(createUser);
 
 asRoute.route('/assignment')
-    .get( verifyToken,  getAssignments)
-    .post( verifyToken,  createAssignment);
+    .get( verifyToken, verifyTeacher,  getAssignments)
+    .post( verifyToken, verifyTeacher,  createAssignment);
 
 asRoute.route('/assignment/due')
     .get( verifyToken,  sortAssignmentByDueDate);
