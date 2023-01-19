@@ -22,10 +22,10 @@ asRoute.route('/assignment/grade')
 
 asRoute.route('/assignment/:id')
     .get( verifyToken,  getAssignment)
-    .post( verifyToken, verifyTeacher, updateAssignment); // verifyUserId --> auth of perticular user --> in 'updateAssignment'
+    .post( verifyToken, verifyTeacher,  updateAssignment); // verifyUserId --> auth of perticular user 
 
 asRoute.route('/assignment/delete/:id')
-    .get( verifyToken,  verifyTeacher, deleteAssignment);
+    .get( verifyToken,  verifyTeacher,  deleteAssignment);
 
 asRoute.route('/submission')
     .get( verifyToken,  getSubmissions)
@@ -33,7 +33,7 @@ asRoute.route('/submission')
 
 asRoute.route('/submission/:id')
     .get( verifyToken,  getSubmission)
-    .post( verifyToken, verifyStudent, updateSubmission);
+    .post( verifyToken, verifyStudent,  updateSubmission);
 
 asRoute.route('/submission/delete/:id')
     .get( verifyToken, verifyStudent, deleteSubmission);

@@ -80,7 +80,7 @@ export const updateSubmission = (req, res) => {
        
         } else {     
 
-            verifyUserId(results.student_id, req.token); 
+            verifyUserId(results.student_id, req.token, res); 
 
             database.query(QUERY.SUBMISSION.UPDATE, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
