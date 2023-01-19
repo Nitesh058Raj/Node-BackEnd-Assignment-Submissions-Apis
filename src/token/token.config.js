@@ -53,9 +53,9 @@ export const verifyToken = ( req, res, next) => {
 
 
 // Userid checking will determine the teachers (t1, t2, ...., tn) or students (s1, s2, ..., sn) 
-export function verifyUserId(x){
-
-    jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
+export function verifyUserId(x, y){
+    // req.token
+    jwt.verify(y, SECRETE_KEY, (error, authData) => {
         if (error) {
             return res.status(HttpStatus.FORBIDDEN.code)
                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
