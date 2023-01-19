@@ -92,9 +92,10 @@ export const updateAssignment = (req, res) => {
                   res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
                       .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`, {'Error' : error})) 
        
-                } 
-                res.status(HttpStatus.CREATED.code)                                                                        
-                    .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Assignment Updated`,{ Assignment: results})) 
+                } else {
+                    res.status(HttpStatus.CREATED.code)                                                                        
+                        .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Assignment Updated`,{ Assignment: results})) 
+                }
             })
         }
     });
