@@ -106,16 +106,18 @@ export const verifyStudent = ( req, res, next) => {
         if (error) {
             return res.status(HttpStatus.FORBIDDEN.code)
                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
+            return;
         }
         // For Every Student
         if (authData.role !== 'student')
         {
             return res.status(HttpStatus.FORBIDDEN.code)
                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
+            return;
         }    
 
     });
-
+    
     next();
 };
 

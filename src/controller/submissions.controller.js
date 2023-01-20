@@ -99,9 +99,9 @@ export const updateSubmission = (req, res) => {
                     return;
                 } 
                 else {
-                res.status(HttpStatus.CREATED.code)                                                                        
-                    .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Submission Updated`,{ Submission: results}))  
-                return;
+                    res.status(HttpStatus.CREATED.code)                                                                        
+                        .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Submission Updated`,{ S:results}))  
+                    return;
                 }
             })
         }
