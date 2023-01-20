@@ -77,13 +77,14 @@ export const updateSubmission = (req, res) => {
             res.status(HttpStatus.NOT_FOUND.code)
 
                 .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `No data Found`)) 
-       
+            return; 
         } else if (!results[0]) { 
           
             res.status(HttpStatus.NOT_FOUND.code)
 
                 .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
        
+            return;
 
         } else {     
 
