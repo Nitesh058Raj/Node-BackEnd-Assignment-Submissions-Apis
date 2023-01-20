@@ -78,6 +78,13 @@ export const updateSubmission = (req, res) => {
 
                 .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `No data Found`)) 
        
+        } else if (!results[0]) { 
+          
+            res.status(HttpStatus.NOT_FOUND.code)
+
+                .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, `Not Found`)) 
+       
+
         } else {     
 
            // verifyUserId(results.student_id, req.token, res); 
