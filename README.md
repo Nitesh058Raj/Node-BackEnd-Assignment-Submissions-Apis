@@ -1,36 +1,60 @@
-# Introduction Node-BackEnd-Assignment-Submissions-Apis
+# Introduction
 
-### Created Apis for task of Assignment management with Security 
-<b>Technologies </b> : NodeJS, Express, JsonWebToken, Mysql <br>
-<b>Images used </b>: mysql:8.0, node:alpine3.11
+### Created APIs for Assignment management with Authentication 
+<b>Authentication:</b> `JsonWebToken (JWT)` </br>
+<b>Runtime:</b> `NodeJS` </br>
+<b>Framework:</b> `ExpressJS` </br>
+<b>Database</b> : `Mysql` </br>
+<b>Images used </b>: </br>
+    &emsp; `mysql:8.0` </br>
+    &emsp; `node:alpine3.11` </br>
+<hr> 
 
-## Features : 
-  - Authentication with JWT (jsonwebtoken)
-  - CRUD operation for assignment(data)
-  - 2 tables - assignment & users (for login) in mysql database
-  - docker-compose & Dockerfile to generate a docker image
+### Features : 
+  > - Authentication with JWT (jsonwebtoken)</br>
+  > - CRUD operation for assignment & submission</br>
+  > - 3 Tables
+  >  * Assignments
+  >  * Users
+  >  * Submissions
   
-## Routes :
-  - /assignment/login 
-      -  POST 
-      -  Create Token (Give in json form in response)    
-  - /assignment -> for return all data                         
-      -  GET   
-      -  Need Token
-  - /assignment/:id -> for return a single data         
+<hr>
+
+### Routes :
+
+> #### Authentication 
+- `/api/auth`
+    -  POST 
+    -  Returns Token in response
+
+> #### Assignment
+  - `/api/assignment`        
+      -  GET  &emsp; Return all data   
+      -  POST&emsp; Create a record   
+  - `/api/assignment/:id` 
+    -  GET &emsp; Return a single data 
+    -  POST &emsp; Update a data 
+  - `/api/assignment/delete/:id` 
      -  GET   
-     -  Need Token
-  - /assignment/:id -> for update a data                   
-     -  POST  
-     -  Need Token
-  - /assignment/delete/:id -> for delete a record    
-    -  GET   
-    -  Need Token
-
-# Installation 
-
-- git clone     : 
-   - https://github.com/Nitesh058Raj/Node-BackEnd-Assignment-Submissions-Apis.git
-- docker images : 
-   - docker pull niteshraj/assignment_apis_with_jwt:v1 
-   - https://hub.docker.com/repository/docker/niteshraj/assignment_apis_with_jwt (For updated versions)
+     -  Delete a record
+     
+> #### Sort     
+  - `api/assignment/due`
+     - GET
+     - Return data sorted with due dates
+  - `api/assignment/grade`
+     - GET
+     - Return data sorted with grade
+     
+> #### Submission     
+  - `/api/submission`        
+     -  GET  &emsp; Return all data   
+     -  POST &emsp; Create a record     
+  - `/api/submission/:id` 
+     -  GET &emsp; Return a single data 
+     -  POST &emsp; Update a data
+  - `/api/submission/delete/:id` 
+     -  GET   
+     -  Delete a record
+     
+<hr>
