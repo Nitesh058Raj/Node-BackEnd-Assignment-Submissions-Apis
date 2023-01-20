@@ -96,11 +96,12 @@ export const updateSubmission = (req, res) => {
                     
                   res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
                     .send(new Response(HttpStatus.INTERNAL_SERVER_ERROR.code, HttpStatus.INTERNAL_SERVER_ERROR.status, `ISError`, {'Error' : error})) 
-       
+                    return;
                 } 
                 else {
                 res.status(HttpStatus.CREATED.code)                                                                        
                     .send(new Response(HttpStatus.CREATED.code, HttpStatus.CREATED.status, `Submission Updated`,{ Submission: results}))  
+                return;
                 }
             })
         }
