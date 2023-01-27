@@ -3,7 +3,7 @@ import Response from '../domain/response.js';
 import logger from '../util/logger.js';
 import QUERY from '../query/query.js';
 import HttpStatus from '../domain/httpstatus.js';
-//import {verifyUserId} from '../token/token.config.js';
+import {verifyUserId} from '../token/token.config.js';
 
 
 
@@ -88,7 +88,32 @@ export const updateSubmission = (req, res) => {
 
         } else {     
 
-           // verifyUserId(results.student_id, req.token, res); 
+            // var y = Object.entries(results[0]);
+            // var y2 = Object.entries(y[2]);
+            // var [key, value] = y[2];
+            const new_var = verifyUserId(Object.values(results[0])[2], req.token);
+            logger.info(typeof(new_var));
+            if ( new_var == 1)
+            {
+                logger.info(`Good`);
+            } else {
+                // var v = Object.values(results[0]);
+                // // logger.info(results);
+                // logger.info(Object.values(results[0]));
+                // logger.info(v[0]);
+                // console.log(y2[1]);
+                // console.log(value);
+                //logger.info(y["student_id"]);
+                //logger.info(Object.values(results));
+                //logger.info(results[0]);
+                //logger.info(typeof(results[0]));
+                //logger.info(results[0].student_id);
+                //logger.info(results[0]["student_id"]);
+                //logger.info(typeof(results));
+                //logger.info(results[0][2]);
+                return res.status(HttpStatus.FORBIDDEN.code)
+                        .send(new Response(HttpStatus.FORBIDDEN.code));
+            }
 
             database.query(QUERY.SUBMISSION.UPDATE, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)

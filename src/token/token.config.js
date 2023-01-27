@@ -36,9 +36,9 @@ export const verifyToken = ( req, res, next) => {
                 return res.status(HttpStatus.FORBIDDEN.code)
                         .send(new Response(HttpStatus.FORBIDDEN.code)) 
             }
-            logger.info(authData);
-            logger.info(authData["role"]);
-            logger.info(authData.role);
+           // logger.info(authData);
+           // logger.info(authData["role"]);
+           // logger.info(authData.role);
         });
         
      } else {
@@ -53,31 +53,29 @@ export const verifyToken = ( req, res, next) => {
 
 
 // Userid checking will determine the teachers (t1, t2, ...., tn) or students (s1, s2, ..., sn) 
-/*
-export function verifyUserId(x, token, res) {
+export function verifyUserId(user_id, token ) {
     // req.token
+    logger.info(`UserId is being verified...`);
+    logger.info(typeof(user_id));
+    //logger.info(token)
     jwt.verify(token, SECRETE_KEY, (error, authData) => {
+        //logger.info(token)
         if (error) {
-            return res.status(HttpStatus.FORBIDDEN.code)
-                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+            logger.info(`Error: ${error}`);
+            return false;
         }
-                
-        if (authData.user_id == x) { // this x
-
-            logger.info(`${req.method} ${req.originalUrl}, Final Authentication done`);
-            return;
-
+        logger.info(token)
+           // JSON.stringify()    
+        if ((authData.user_id) == (user_id).toString() ){ // this x
+            logger.info(`GG`);
+            return true;
         }  else { 
-            
-            return res.status(HttpStatus.FORBIDDEN.code)
-                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
-            
+            logger.info(`UserId Auth : ${authData.user_id}`);
+            logger.info(`UserId Non : ${user_id}`);
+            return false;
         }
-        return;
     });
-
 }; 
-*/
 
 
 export const verifyTeacher = ( req, res, next) => {
@@ -88,7 +86,7 @@ export const verifyTeacher = ( req, res, next) => {
             return res.status(HttpStatus.FORBIDDEN.code)
                        .send(new Response(HttpStatus.FORBIDDEN.code)) 
         }
-        logger.info(authData);
+        //logger.info(authData);
         if (authData.role !== 'teacher')
         {
             return res.status(HttpStatus.FORBIDDEN.code)
@@ -105,15 +103,13 @@ export const verifyStudent = ( req, res, next) => {
     jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
         if (error) {
             return res.status(HttpStatus.FORBIDDEN.code)
-                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
-            return;
+                       .send(new Response(HttpStatus.FORBIDDEN.code));
         }
         // For Every Student
         if (authData.role !== 'student')
         {
             return res.status(HttpStatus.FORBIDDEN.code)
-                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
-            return;
+                       .send(new Response(HttpStatus.FORBIDDEN.code));
         }    
 
     });
