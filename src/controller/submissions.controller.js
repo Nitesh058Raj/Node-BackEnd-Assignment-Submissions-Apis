@@ -96,7 +96,7 @@ export const updateSubmission = (req, res) => {
             // const var2 = !!(new_var);
             // logger.info(typeof(var2));
             // logger.info(var2);
-            if (new_var === true)
+            if (new_var == true)
             {
                 logger.info(`Good`);
             } else {
