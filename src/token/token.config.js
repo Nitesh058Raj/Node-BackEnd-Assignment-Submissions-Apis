@@ -72,7 +72,6 @@ export function verifyUserId(user_id, token ) {
         }  else { 
             logger.info(`UserId Auth : ${authData.user_id}`);
             logger.info(`UserId Non : ${user_id}`);
-            let new_v = false;
             return !!(false);
         }
     });

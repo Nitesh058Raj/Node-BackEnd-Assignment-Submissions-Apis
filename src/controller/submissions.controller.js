@@ -68,10 +68,10 @@ export const createSubmission = (req, res) => {
 };
 
 
-export const updateSubmission = (req, res) => {
+export const updateSubmission = async (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, Checking for Submission...`);
 
-    database.query(QUERY.SUBMISSION.SELECT, [req.params.id], (error, results) => {
+    database.query(QUERY.SUBMISSION.SELECT, [req.params.id], async (error, results) => {
         if(!results) {
 
             res.status(HttpStatus.NOT_FOUND.code)
@@ -91,7 +91,7 @@ export const updateSubmission = (req, res) => {
             // var y = Object.entries(results[0]);
             // var y2 = Object.entries(y[2]);
             // var [key, value] = y[2];
-            var new_var = verifyUserId(Object.values(results[0])[2], req.token);
+            var new_var = await verifyUserId(Object.values(results[0])[2], req.token);
             console.log(new_var);
             console.log(typeof(new_var));
             new_var = !!(new_var);
