@@ -53,12 +53,12 @@ export const verifyToken = ( req, res, next) => {
 
 
 // Userid checking will determine the teachers (t1, t2, ...., tn) or students (s1, s2, ..., sn) 
-export function verifyUserId(user_id, token ) {
+export async function verifyUserId(user_id, token ) {
     // req.token
     logger.info(`UserId is being verified...`);
     logger.info(typeof(user_id));
     //logger.info(token)
-    jwt.verify(token, SECRETE_KEY, (error, authData) => {
+    await jwt.verify(token, SECRETE_KEY, (error, authData) => {
         //logger.info(token)
         if (error) {
             logger.info(`Error: ${error}`);
