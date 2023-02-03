@@ -9,6 +9,8 @@ import dotenv from 'dotenv';
 
 
 dotenv.config();
+const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
+
 
 
 export const getSubmissions = (req, res) => {
