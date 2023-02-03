@@ -68,11 +68,11 @@ export function verifyUserId(user_id, token ) {
            // JSON.stringify()    
         if ((authData.user_id) == (user_id).toString() ){ // this x
             logger.info(`GG`);
-            return 0;
+            return true;
         }  else { 
             logger.info(`UserId Auth : ${authData.user_id}`);
             logger.info(`UserId Non : ${user_id}`);
-            return 1;
+            return false;
         }
     });
 }; 
