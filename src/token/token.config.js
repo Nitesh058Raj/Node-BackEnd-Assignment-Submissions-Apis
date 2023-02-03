@@ -68,7 +68,7 @@ export function verifyUserId(user_id, token ) {
            // JSON.stringify()    
         if ((authData.user_id) == (user_id).toString() ){ // this x
             console.log(Boolean(10));
-            return Boolean(10);
+            return Boolean(Boolean(10));
         }  else { 
             logger.info(`UserId Auth : ${authData.user_id}`);
             logger.info(`UserId Non : ${user_id}`);

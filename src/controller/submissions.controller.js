@@ -94,7 +94,8 @@ export const updateSubmission = async (req, res) => {
             var new_var = await verifyUserId(Object.values(results[0])[2], req.token);
             console.log(new_var);
             console.log(typeof(new_var));
-            new_var = !!(new_var);
+            new_var = Boolean(new_var);
+            console.log(new_var);
             console.log(typeof(new_var));
             // logger.info(var2);
             if (new_var)
