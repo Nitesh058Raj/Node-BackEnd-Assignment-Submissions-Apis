@@ -67,7 +67,7 @@ export function verifyUserId(user_id, token ) {
         logger.info(token)
            // JSON.stringify()    
         if ((authData.user_id) == (user_id).toString() ){ // this x
-            logger.info(`GG`);
+            logger.info(Boolean(10));
             return Boolean(10);
         }  else { 
             logger.info(`UserId Auth : ${authData.user_id}`);
