@@ -91,14 +91,13 @@ export const updateSubmission = async (req, res) => {
             // var y = Object.entries(results[0]);
             // var y2 = Object.entries(y[2]);
             // var [key, value] = y[2];
-            var new_var = await verifyUserId(Object.values(results[0])[2], req.token);
-            console.log(new_var);
-            console.log(typeof(new_var));
+            console.log(await verifyUserId(Object.values(results[0])[2], req.token));
             //new_var = Boolean(new_var);
             // console.log(new_var);
             // console.log(typeof(new_var));
             // logger.info(var2);
-            if (new_var['result'])
+            console.log("Dont check !!");
+            if (0)
             {
                 logger.info(`Good`);
             } else {
