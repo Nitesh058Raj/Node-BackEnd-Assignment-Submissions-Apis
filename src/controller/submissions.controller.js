@@ -94,7 +94,9 @@ export const updateSubmission = (req, res) => {
             const new_var = verifyUserId(Object.values(results[0])[2], req.token);
             logger.info(typeof(new_var));
             const var2 = !!(new_var);
-            if ( var2 == true)
+            logger.info(typeof(var2));
+            logger.info(var2);
+            if (var2)
             {
                 logger.info(`Good`);
             } else {
