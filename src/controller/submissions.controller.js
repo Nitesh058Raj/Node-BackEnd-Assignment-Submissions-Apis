@@ -91,12 +91,13 @@ export const updateSubmission = (req, res) => {
             // var y = Object.entries(results[0]);
             // var y2 = Object.entries(y[2]);
             // var [key, value] = y[2];
-            const new_var = verifyUserId(Object.values(results[0])[2], req.token);
-           // logger.info(typeof(new_var));
-            // const var2 = !!(new_var);
-            // logger.info(typeof(var2));
+            var new_var = verifyUserId(Object.values(results[0])[2], req.token);
+            console.log(new_var);
+            logger.info(typeof(new_var));
+            new_var = !!(new_var);
+            logger.info(typeof(new_var));
             // logger.info(var2);
-            if (new_var == true)
+            if (new_var)
             {
                 logger.info(`Good`);
             } else {
