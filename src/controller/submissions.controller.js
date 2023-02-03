@@ -93,24 +93,10 @@ export const updateSubmission = (req, res) => {
             // var [key, value] = y[2];
             const new_var = verifyUserId(Object.values(results[0])[2], req.token);
             logger.info(typeof(new_var));
-            if ( new_var == 1)
+            if ( new_var == 0)
             {
                 logger.info(`Good`);
             } else {
-                // var v = Object.values(results[0]);
-                // // logger.info(results);
-                // logger.info(Object.values(results[0]));
-                // logger.info(v[0]);
-                // console.log(y2[1]);
-                // console.log(value);
-                //logger.info(y["student_id"]);
-                //logger.info(Object.values(results));
-                //logger.info(results[0]);
-                //logger.info(typeof(results[0]));
-                //logger.info(results[0].student_id);
-                //logger.info(results[0]["student_id"]);
-                //logger.info(typeof(results));
-                //logger.info(results[0][2]);
                 return res.status(HttpStatus.FORBIDDEN.code)
                         .send(new Response(HttpStatus.FORBIDDEN.code));
             }
