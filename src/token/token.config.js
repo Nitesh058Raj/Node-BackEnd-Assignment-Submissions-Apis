@@ -62,17 +62,17 @@ export function verifyUserId(user_id, token ) {
         //logger.info(token)
         if (error) {
             logger.info(`Error: ${error}`);
-            return false;
+            return {result : false};
         }
         logger.info(token)
            // JSON.stringify()    
         if ((authData.user_id) == (user_id).toString() ){ // this x
             console.log(Boolean(10));
-            return Boolean(Boolean(10));
+            return {result : true};
         }  else { 
             logger.info(`UserId Auth : ${authData.user_id}`);
             logger.info(`UserId Non : ${user_id}`);
-            return Boolean(0);
+            return {result : false};
         }
     });
 }; 
