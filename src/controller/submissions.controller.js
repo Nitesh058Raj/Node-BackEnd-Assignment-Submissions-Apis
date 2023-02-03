@@ -93,9 +93,9 @@ export const updateSubmission = (req, res) => {
             // var [key, value] = y[2];
             var new_var = verifyUserId(Object.values(results[0])[2], req.token);
             console.log(new_var);
-            logger.info(typeof(new_var));
+            console.log(typeof(new_var));
             new_var = !!(new_var);
-            logger.info(typeof(new_var));
+            console.log(typeof(new_var));
             // logger.info(var2);
             if (new_var)
             {
