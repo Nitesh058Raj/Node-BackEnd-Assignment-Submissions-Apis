@@ -4,7 +4,11 @@ import logger from '../util/logger.js';
 import QUERY from '../query/query.js';
 import HttpStatus from '../domain/httpstatus.js';
 import {verifyUserId} from '../token/token.config.js';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
+
+dotenv.config();
 
 
 export const getSubmissions = (req, res) => {
@@ -87,23 +91,27 @@ export const updateSubmission = async (req, res) => {
             return;
 
         } else {     
+            //console.log(await verifyUserId(Object.values(results[0])[2], req.token));
 
-            // var y = Object.entries(results[0]);
-            // var y2 = Object.entries(y[2]);
-            // var [key, value] = y[2];
-            console.log(await verifyUserId(Object.values(results[0])[2], req.token));
-            //new_var = Boolean(new_var);
-            // console.log(new_var);
-            // console.log(typeof(new_var));
-            // logger.info(var2);
-            console.log("Dont check !!");
-            if (0)
-            {
-                logger.info(`Good`);
-            } else {
-                return res.status(HttpStatus.FORBIDDEN.code)
+            jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
+                //logger.info(token)
+                if (error) {
+                    logger.info(`Error: ${error}`);
+                    return res.status(HttpStatus.FORBIDDEN.code)
                         .send(new Response(HttpStatus.FORBIDDEN.code));
-            }
+                }
+                //logger.info(token)
+                   // JSON.stringify()    
+                if ((authData.user_id) == (Object.values(results[0])[2]).toString() ){ // this x
+                    console.log(Boolean(10));
+                    
+                }  else { 
+                    
+                    return res.status(HttpStatus.FORBIDDEN.code)
+                        .send(new Response(HttpStatus.FORBIDDEN.code));
+                }
+            });
+            console.log("Dont check !!");
 
             database.query(QUERY.SUBMISSION.UPDATE, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
