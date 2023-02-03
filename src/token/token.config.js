@@ -68,13 +68,12 @@ export function verifyUserId(user_id, token ) {
            // JSON.stringify()    
         if ((authData.user_id) == (user_id).toString() ){ // this x
             logger.info(`GG`);
-            let new_v = true;
-            return new_v;
+            return !!(true);
         }  else { 
             logger.info(`UserId Auth : ${authData.user_id}`);
             logger.info(`UserId Non : ${user_id}`);
             let new_v = false;
-            return new_v;
+            return !!(false);
         }
     });
 }; 
