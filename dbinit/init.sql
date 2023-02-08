@@ -32,7 +32,7 @@ CREATE TABLE Asisgned (
     student_id     BIGINT  UNSIGNED NOT NULL,
     created_at     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (assign_id)
-)
+);
 
 CREATE TABLE Submissions (
     submission_id BIGINT  UNSIGNED NOT NULL AUTO_INCREMENT,
