@@ -20,7 +20,7 @@ asRoute.route('/assignment/due')
 asRoute.route('/assignment/grade') 
     .get( verifyToken,  sortAssignmentByGrade);
 
-asRoute.route('/assignment/assign')
+asRoute.route('/assignment/a/ssign')
     .post( verifyToken,  verifyTeacher,  assignAssignment);
 
 asRoute.route('/assignment/:id')
