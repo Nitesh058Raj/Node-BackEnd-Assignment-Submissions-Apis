@@ -4,6 +4,14 @@ import logger from '../util/logger.js';
 import QUERY from '../query/query.js';
 import HttpStatus from '../domain/httpstatus.js';
 
+
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
+const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
+
+
 export const getAssignments = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, fetching Assignments...`);
 
@@ -45,6 +53,25 @@ export const getAssignment = (req, res) => {
 
 export const createAssignment = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, Posting Assignment...`);
+
+    jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
+                
+        if (error) {
+            logger.info(`Error: ${error}`);
+            return res.status(HttpStatus.FORBIDDEN.code)
+                .send(new Response(HttpStatus.FORBIDDEN.code));
+        }
+            
+        if ((authData.user_id) == (req.body.teacher_id).toString() ){ // this x
+            console.log(Boolean(10));
+            
+        }  else { 
+            
+            return res.status(HttpStatus.FORBIDDEN.code)
+                .send(new Response(HttpStatus.FORBIDDEN.code));
+        }
+    });
+
 
     database.query(QUERY.ASSIGNMENT.CREATE, Object.values(req.body), (error, results) => {
         if(!results) {
