@@ -36,9 +36,7 @@ export const verifyToken = ( req, res, next) => {
                 return res.status(HttpStatus.FORBIDDEN.code)
                         .send(new Response(HttpStatus.FORBIDDEN.code)) 
             }
-           // logger.info(authData);
-           // logger.info(authData["role"]);
-           // logger.info(authData.role);
+            
         });
         
      } else {

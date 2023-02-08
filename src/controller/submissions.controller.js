@@ -3,7 +3,8 @@ import Response from '../domain/response.js';
 import logger from '../util/logger.js';
 import QUERY from '../query/query.js';
 import HttpStatus from '../domain/httpstatus.js';
-import {verifyUserId} from '../token/token.config.js';
+
+
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
@@ -93,17 +94,15 @@ export const updateSubmission = async (req, res) => {
             return;
 
         } else {     
-            //console.log(await verifyUserId(Object.values(results[0])[2], req.token));
-
+            
             jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
-                //logger.info(token)
+                
                 if (error) {
                     logger.info(`Error: ${error}`);
                     return res.status(HttpStatus.FORBIDDEN.code)
                         .send(new Response(HttpStatus.FORBIDDEN.code));
                 }
-                //logger.info(token)
-                   // JSON.stringify()    
+                    
                 if ((authData.user_id) == (Object.values(results[0])[2]).toString() ){ // this x
                     console.log(Boolean(10));
                     
@@ -113,8 +112,7 @@ export const updateSubmission = async (req, res) => {
                         .send(new Response(HttpStatus.FORBIDDEN.code));
                 }
             });
-            console.log("Dont check !!");
-
+            
             database.query(QUERY.SUBMISSION.UPDATE, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
                 {
@@ -153,7 +151,7 @@ export const deleteSubmission = (req, res) => {
 
         } else {     
  
-            //verifyUserId(results.student_id); 
+           
 
             database.query(QUERY.SUBMISSION.DELETE, [req.params.id], (error, results) => {
                 if(error)
