@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { getAssignments, getAssignment, createAssignment, updateAssignment, deleteAssignment, sortAssignmentByDueDate, sortAssignmentByGrade } from '../controller/assignments.controller.js';
+import { getAssignments, getAssignment, createAssignment, updateAssignment, deleteAssignment, assignAssignment,sortAssignmentByDueDate, sortAssignmentByGrade } from '../controller/assignments.controller.js';
 import { createUser } from '../controller/users.controller.js';
 import { getSubmissions, getSubmission, createSubmission, updateSubmission, deleteSubmission} from '../controller/submissions.controller.js';
 import { verifyToken, verifyTeacher , verifyStudent } from '../token/token.config.js';
@@ -26,6 +26,10 @@ asRoute.route('/assignment/:id')
 
 asRoute.route('/assignment/delete/:id')
     .get( verifyToken,  verifyTeacher,  deleteAssignment);
+
+asRoute.route('/assignment/assign')
+    .post( verifyToken,  verifyTeacher,  assignAssignment);
+
 
 asRoute.route('/submission')
     .get( verifyToken,  getSubmissions)

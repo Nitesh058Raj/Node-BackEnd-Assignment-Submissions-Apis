@@ -18,6 +18,11 @@ const QUERY = {
         CREATE_AND_RUTURN: 'CALL create_and_return(?,?,?)'
     },
 
+    Assign: {
+        PROVIDE: 'INSERT INTO Asisgned (assignment_id, student_id) VALUES (? , ?)'
+    },
+
+
     SUBMISSION: {
         SELECT_ALL: 'SELECT * FROM Submissions',
         SELECT: 'SELECT * FROM Submissions WHERE submission_id = ?',

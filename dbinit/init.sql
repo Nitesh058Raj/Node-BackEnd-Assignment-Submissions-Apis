@@ -26,6 +26,14 @@ CREATE TABLE Assignments (
     FOREIGN KEY (teacher_id) REFERENCES Users(user_id)
 );
 
+CREATE TABLE Asisgned (
+   
+    assignment_id  BIGINT  UNSIGNED NOT NULL,  
+    student_id     BIGINT  UNSIGNED NOT NULL,
+    created_at    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+   
+)
+
 CREATE TABLE Submissions (
     submission_id BIGINT  UNSIGNED NOT NULL AUTO_INCREMENT,
     assignment_id BIGINT  UNSIGNED NOT NULL,
