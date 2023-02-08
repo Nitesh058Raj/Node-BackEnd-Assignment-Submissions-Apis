@@ -92,11 +92,11 @@ export const createAssignment = (req, res) => {
 
 export const assignAssignment = (req,res) => {
 
-    for (let i = 0; i < req.body.studentid.length; i++) {
-        text += req.body.studentid[i] + "<br>";
+    for (let i = 0; i < req.body.student_id.length; i++) {
+       // text += req.body.studentid[i] + "<br>";
       
 
-    database.query(QUERY.Assign.PROVIDE, [...Object.values(req.body.assignment_id), [req.body.studentid[i]]], (error, results) => {
+    database.query(QUERY.Assign.PROVIDE, [...Object.values(req.body.assignment_id), [req.body.student_id[i]]], (error, results) => {
         if(!results) {
 
             res.status(HttpStatus.INTERNAL_SERVER_ERROR.code)
