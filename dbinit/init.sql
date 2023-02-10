@@ -31,8 +31,7 @@ CREATE TABLE Asisgned (
     student_id     BIGINT  UNSIGNED NOT NULL,
     created_at     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (assignment_id) REFERENCES Assignments(assignment_id),
-    FOREIGN KEY (student_id) REFERENCES Users(user_id),
-    PRIMARY KEY (assign_id)
+    FOREIGN KEY (student_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE Submissions (
