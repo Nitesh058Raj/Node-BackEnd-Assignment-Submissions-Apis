@@ -14,12 +14,11 @@ const QUERY = {
         CREATE: 'INSERT INTO Users (name, email, role) VALUES (?, ?, ?)',
         UPDATE: 'UPDATE Users SET name = ?, email = ? WHERE user_id = ?',
         DELETE: 'DELETE FROM Users WHERE user_id = ?',
-        EMAIL: 'SELECT * FROM Users WHERE email = ?',
-        CREATE_AND_RUTURN: 'CALL create_and_return(?,?,?)'
+        EMAIL: 'SELECT * FROM Users WHERE email = ?'
     },
 
     Assign: {
-        PROVIDE: 'INSERT INTO Asisgned (assignment_id, student_id) VALUES (? , ?)'
+        CREATE: 'INSERT INTO Asisgned (assignment_id, student_id) VALUES (? , ?)'
     },
 
 

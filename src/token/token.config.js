@@ -36,7 +36,7 @@ export const verifyToken = ( req, res, next) => {
                 return res.status(HttpStatus.FORBIDDEN.code)
                         .send(new Response(HttpStatus.FORBIDDEN.code)) 
             }
-            
+            req.auth = authData; 
         });
         
      } else {
@@ -77,7 +77,14 @@ export async function verifyUserId(user_id, token ) {
 
 
 export const verifyTeacher = ( req, res, next) => {
-    
+
+    if (req.auth.role !== 'teacher')
+    {
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+    }
+    next();
+   /* 
     logger.info(`VerifyTeacher...`);
     jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
         if (error) {
@@ -93,11 +100,19 @@ export const verifyTeacher = ( req, res, next) => {
 
     });
     next();
+    */
 };
 
 
 export const verifyStudent = ( req, res, next) => {
- 
+
+    if (req.auth.role !== 'student')
+    {
+            return res.status(HttpStatus.FORBIDDEN.code)
+                       .send(new Response(HttpStatus.FORBIDDEN.code)) 
+    }
+    next();
+ /*
     jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
         if (error) {
             return res.status(HttpStatus.FORBIDDEN.code)
@@ -113,6 +128,7 @@ export const verifyStudent = ( req, res, next) => {
     });
     
     next();
+    */
 };
 
 /*
