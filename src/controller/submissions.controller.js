@@ -4,15 +4,6 @@ import logger from '../util/logger.js';
 import QUERY from '../query/query.js';
 import HttpStatus from '../domain/httpstatus.js';
 
-/*
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-
-
-dotenv.config();
-const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
-*/
-
 
 export const getSubmissions = (req, res) => {
     logger.info(`${req.method} ${req.originalUrl}, fetching Submissions...`);
@@ -104,25 +95,6 @@ export const updateSubmission = async (req, res) => {
                 return res.status(HttpStatus.FORBIDDEN.code)
                     .send(new Response(HttpStatus.FORBIDDEN.code));
             }
-            /*
-            jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
-                
-                if (error) {
-                    logger.info(`Error: ${error}`);
-                    return res.status(HttpStatus.FORBIDDEN.code)
-                        .send(new Response(HttpStatus.FORBIDDEN.code));
-                }
-                    
-                if ((authData.user_id) == (Object.values(results[0])[2]).toString() ){ // this x
-                    console.log(Boolean(10));
-                    
-                }  else { 
-                    
-                    return res.status(HttpStatus.FORBIDDEN.code)
-                        .send(new Response(HttpStatus.FORBIDDEN.code));
-                }
-            });
-            */
             
             database.query(QUERY.SUBMISSION.UPDATE, [...Object.values(req.body), req.params.id], (error, results) => {
                 if(error)
@@ -180,6 +152,32 @@ export const deleteSubmission = (req, res) => {
 
 };
 
+/*
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
 
+dotenv.config();
+const SECRETE_KEY = process.env.SECRETE_KEY || "super_secrete_key";
+*/
+
+ /*
+            jwt.verify(req.token, SECRETE_KEY, (error, authData) => {
+                
+                if (error) {
+                    logger.info(`Error: ${error}`);
+                    return res.status(HttpStatus.FORBIDDEN.code)
+                        .send(new Response(HttpStatus.FORBIDDEN.code));
+                }
+                    
+                if ((authData.user_id) == (Object.values(results[0])[2]).toString() ){ // this x
+                    console.log(Boolean(10));
+                    
+                }  else { 
+                    
+                    return res.status(HttpStatus.FORBIDDEN.code)
+                        .send(new Response(HttpStatus.FORBIDDEN.code));
+                }
+            });
+            */
 
